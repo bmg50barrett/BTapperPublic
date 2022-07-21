@@ -160,7 +160,7 @@
                     <StackPanel Style="{StaticResource Centered}">
                         <TextBox x:Name="TargetTextBox" AcceptsReturn="True" IsReadOnly="True" 
                                  Width="500" Height="200" PlaceholderText="Waiting for rolls..." 
-                                 HorizontalTextAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Center" FontSize="20"/>
+                                 HorizontalTextAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Center" FontSize="18"/>
                     </StackPanel>
                 </StackPanel>
             </StackPanel>
