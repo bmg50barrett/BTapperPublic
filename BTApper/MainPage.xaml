@@ -1,0 +1,25 @@
+﻿<Page
+    x:Class="BTApper.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:BTApper"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" RequestedTheme="Default" NavigationCacheMode="Required">
+
+    <Grid x:Name="PageGrid">
+        <NavigationView x:Name="NavView" ItemInvoked="NavView_ItemInvoked" Loaded="NavView_Loaded" 
+                        SelectionChanged="NavView_SelectionChanged" BackRequested="NavView_BackRequested" 
+                        IsBackEnabled="{Binding ElementName=ContentFrame, Path=CanGoBack}">
+            <NavigationView.MenuItems>
+                <NavigationViewItem Content="GATOR" Tag="GatorView" Icon="Calculator"/>
+                <NavigationViewItem Content="Energy" Tag="EnergyView" Icon="FullScreen"/>
+                <NavigationViewItem Content="Ballistic" Tag="BallisticView" Icon="Rotate"/>
+                <NavigationViewItem Content="Missile" Tag="MissileView" Icon="Placeholder"/>
+            </NavigationView.MenuItems>
+            <Frame x:Name="ContentFrame" NavigationFailed="ContentFrame_NavigationFailed"></Frame>
+        </NavigationView>
+        
+    </Grid>
+</Page>

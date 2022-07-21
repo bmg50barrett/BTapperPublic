@@ -1,0 +1,169 @@
+﻿<Page
+    x:Class="BTApper.Views.GatorView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:BTApper.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Tag="GatorView"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.Resources>
+        <Style x:Name="Title" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Impact"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="36"/>
+            <Setter Property="Padding" Value="0,20,0,10"/>
+        </Style>
+        <Style x:Name="Centered" TargetType="StackPanel">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Orientation" Value="Horizontal"/>
+        </Style>
+        <Style x:Name="RadioButton50" TargetType="RadioButton">
+            <Setter Property="MinWidth" Value="0"/>
+            <Setter Property="Width" Value="50"/>
+            <Setter Property="Height" Value="32"/>
+        </Style>
+        <Style x:Name="RadioButton75" TargetType="RadioButton">
+            <Setter Property="MinWidth" Value="0"/>
+            <Setter Property="Width" Value="75"/>
+            <Setter Property="Height" Value="32"/>
+        </Style>
+        <Style x:Name="RadioButton100" TargetType="RadioButton">
+            <Setter Property="MinWidth" Value="0"/>
+            <Setter Property="Width" Value="100"/>
+            <Setter Property="Height" Value="32"/>
+        </Style>
+    </Page.Resources>
+
+    <Grid x:Name="PageGrid">
+        <StackPanel x:Name="WholeStacker" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel x:Name="MainColumn" HorizontalAlignment="Center" VerticalAlignment="Top">
+                <TextBlock Style="{StaticResource Title}">G.A.T.O.R.</TextBlock>
+                <NavigationViewItemSeparator/>
+                <StackPanel x:Name="speedStackPanel" HorizontalAlignment="Center" Spacing="5">
+                    <StackPanel>
+                        <TextBlock HorizontalAlignment="Center">Game Speed</TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Spacing="10">
+                        <RadioButton GroupName="S"  x:Name="SpeedNormal" Content="Normal" Checked="SpeedNormal_Checked" Style="{StaticResource RadioButton100}"/>
+                        <RadioButton GroupName="S"  x:Name="SpeedFast" Content="Fast" Checked="SpeedFast_Checked" Style="{StaticResource RadioButton100}"/>
+                        <RadioButton GroupName="S"  x:Name="SpeedFaster" Content="Faster" Checked="SpeedFaster_Checked" Style="{StaticResource RadioButton100}"/>
+                    </StackPanel>
+                </StackPanel>
+                <NavigationViewItemSeparator/>
+                <StackPanel x:Name="gatorStackPanel" HorizontalAlignment="Center" Spacing="5">
+                    <StackPanel>
+                        <TextBlock x:Name="GunneryTitle" HorizontalAlignment="Center">Gunnery Skill</TextBlock>
+                    </StackPanel>
+                    <StackPanel x:Name="gunneryStackButtons" Style="{StaticResource Centered}">
+                        <RadioButton GroupName="G" x:Name="G0" Content="+0" Checked="G0_Checked" Style="{StaticResource RadioButton50}"/>
+                        <RadioButton GroupName="G" x:Name="G1" Content="+1" Checked="G1_Checked" Style="{StaticResource RadioButton50}"/>
+                        <RadioButton GroupName="G" x:Name="G2" Content="+2" Checked="G2_Checked" Style="{StaticResource RadioButton50}"/>
+                        <RadioButton GroupName="G" x:Name="G3" Content="+3" Checked="G3_Checked" Style="{StaticResource RadioButton50}"/>
+                        <RadioButton GroupName="G" x:Name="G4" Content="+4" Checked="G4_Checked" Style="{StaticResource RadioButton50}"/>
+                        <RadioButton GroupName="G" x:Name="G5" Content="+5" Checked="G5_Checked" Style="{StaticResource RadioButton50}"/>
+                        <RadioButton GroupName="G" x:Name="G6" Content="+6" Checked="G6_Checked" Style="{StaticResource RadioButton50}"/>
+                        <RadioButton GroupName="G" x:Name="G7" Content="+7" Checked="G7_Checked" Style="{StaticResource RadioButton50}"/>
+                    </StackPanel>
+                    <StackPanel>
+                        <TextBlock x:Name="AttackerTitle" HorizontalAlignment="Center">Attacker's Modifier</TextBlock>
+                        <StackPanel x:Name="attackerStackButtons" Style="{StaticResource Centered}">
+                            <RadioButton GroupName="A" x:Name="A0" Content="+0" Checked="A0_Checked" Style="{StaticResource RadioButton50}"/>
+                            <RadioButton GroupName="A" x:Name="A1" Content="+1" Checked="A1_Checked" Style="{StaticResource RadioButton50}"/>
+                            <RadioButton GroupName="A" x:Name="A2" Content="+2" Checked="A2_Checked" Style="{StaticResource RadioButton50}"/>
+                            <RadioButton GroupName="A" x:Name="A3" Content="+3" Checked="A3_Checked" Style="{StaticResource RadioButton50}"/>
+                            <RadioButton GroupName="A" x:Name="A4" Content="+4" Checked="A4_Checked" Style="{StaticResource RadioButton50}"/>
+                            <RadioButton GroupName="A" x:Name="A5" Content="+5" Checked="A5_Checked" Style="{StaticResource RadioButton50}"/>
+                            <RadioButton GroupName="A" x:Name="A6" Content="+6" Checked="A6_Checked" Style="{StaticResource RadioButton50}"/>
+                            <RadioButton GroupName="A" x:Name="A7" Content="+7" Checked="A7_Checked" Style="{StaticResource RadioButton50}"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel>
+                        <TextBlock x:Name="TargetTitle" HorizontalAlignment="Center">Target's Modifier</TextBlock>
+                        <StackPanel x:Name="targetStackButtons" Style="{StaticResource Centered}">
+                            <RadioButton GroupName="T" x:Name="T0" Content="+0" Checked="T0_Checked" Style="{StaticResource RadioButton50}"/>
+                            <RadioButton GroupName="T" x:Name="T1" Content="+1" Checked="T1_Checked" Style="{StaticResource RadioButton50}"/>
+                            <RadioButton GroupName="T" x:Name="T2" Content="+2" Checked="T2_Checked" Style="{StaticResource RadioButton50}"/>
+                            <RadioButton GroupName="T" x:Name="T3" Content="+3" Checked="T3_Checked" Style="{StaticResource RadioButton50}"/>
+                            <RadioButton GroupName="T" x:Name="T4" Content="+4" Checked="T4_Checked" Style="{StaticResource RadioButton50}"/>
+                            <RadioButton GroupName="T" x:Name="T5" Content="+5" Checked="T5_Checked" Style="{StaticResource RadioButton50}"/>
+                            <RadioButton GroupName="T" x:Name="T6" Content="+6" Checked="T6_Checked" Style="{StaticResource RadioButton50}"/>
+                            <RadioButton GroupName="T" x:Name="T7" Content="+7" Checked="T7_Checked" Style="{StaticResource RadioButton50}"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel>
+                        <TextBlock x:Name="InterveningTitle" HorizontalAlignment="Center">Intervening Modifiers</TextBlock>
+                        <StackPanel Style="{StaticResource Centered}">
+                            <RadioButton GroupName="O" x:Name="O0" Content="+0" Checked="O0_Checked" Style="{StaticResource RadioButton50}"/>
+                            <RadioButton GroupName="O" x:Name="O1" Content="+1" Checked="O1_Checked" Style="{StaticResource RadioButton50}"/>
+                            <RadioButton GroupName="O" x:Name="O2" Content="+2" Checked="O2_Checked" Style="{StaticResource RadioButton50}"/>
+                            <RadioButton GroupName="O" x:Name="O3" Content="+3" Checked="O3_Checked" Style="{StaticResource RadioButton50}"/>
+                            <RadioButton GroupName="O" x:Name="O4" Content="+4" Checked="O4_Checked" Style="{StaticResource RadioButton50}"/>
+                            <RadioButton GroupName="O" x:Name="O5" Content="+5" Checked="O5_Checked" Style="{StaticResource RadioButton50}"/>
+                            <RadioButton GroupName="O" x:Name="O6" Content="+6" Checked="O6_Checked" Style="{StaticResource RadioButton50}"/>
+                            <RadioButton GroupName="O" x:Name="O7" Content="+7" Checked="O7_Checked" Style="{StaticResource RadioButton50}"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel x:Name="RangeFullPanel">
+                        <TextBlock x:Name="RangeTitle" HorizontalAlignment="Center">Range</TextBlock>
+                        <StackPanel x:Name="RangeButtonsPanel" Style="{StaticResource Centered}">
+                            <RadioButton GroupName="R" x:Name="RMin" Content="&lt; Min" Checked="RMin_Checked" Style="{StaticResource RadioButton75}"/>
+                            <RadioButton GroupName="R" x:Name="RS" Content="Short" Checked="RS_Checked" Style="{StaticResource RadioButton75}"/>
+                            <RadioButton GroupName="R" x:Name="RMed" Content="Med" Checked="RMed_Checked" Style="{StaticResource RadioButton75}"/>
+                            <RadioButton GroupName="R" x:Name="RL" Content="Long" Checked="RL_Checked" Style="{StaticResource RadioButton75}"/>
+                            <RadioButton GroupName="R" x:Name="RE" Content="Ext" Checked="RE_Checked" Style="{StaticResource RadioButton75}"/>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+                <NavigationViewItemSeparator/>
+                <StackPanel>
+                    <TextBlock HorizontalAlignment="Center">Miscellaneous</TextBlock>
+                    <StackPanel Style="{StaticResource Centered}">
+                        <CheckBox x:Name="PulseCheck" Checked="PulseCheck_Checked" Unchecked="PulseCheck_Unchecked">Pulse Laser</CheckBox>
+                        <CheckBox x:Name="TargetingComputerCheck" Checked="TargetingComputerCheck_Checked" Unchecked="TargetingComputerCheck_Unchecked">T.Comp</CheckBox>
+                        <CheckBox x:Name="ShoulderCheck" Checked="ShoulderCheck_Checked" Unchecked="ShoulderCheck_Unchecked" Content="Shoulder Hit"/>
+                        <CheckBox x:Name="ActuatorCheck" Checked="ActuatorCheck_Checked" Unchecked="ActuatorCheck_Unchecked">L. Actuator Hit</CheckBox>
+                    </StackPanel>
+                    <StackPanel Style="{StaticResource Centered}">
+                        <CheckBox x:Name="SensorHit" Checked="SensorHit_Checked" Unchecked="SensorHit_Unchecked">Sensor Hit</CheckBox>
+                        <CheckBox x:Name="Indirect" Checked="Indirect_Checked" Unchecked="Indirect_Unchecked">Indirect</CheckBox>
+                        <CheckBox x:Name="Secondary" Checked="Secondary_Checked" Unchecked="Secondary_Unchecked" Content="Secondary"/>
+                        <CheckBox x:Name="UActuatorHit" Checked="UActuatorHit_Checked" Unchecked="UActuatorHit_Unchecked">U. Actuator Hit</CheckBox>
+                    </StackPanel>
+                    <NavigationViewItemSeparator/>
+                    <TextBlock HorizontalAlignment="Center">Heat</TextBlock>
+                    <StackPanel Style="{StaticResource Centered}">
+                        <RadioButton x:Name="Heat0to7" Checked="Heat0to7_Checked" Style="{StaticResource RadioButton100}">0-7</RadioButton>
+                        <RadioButton x:Name="Heat8to12" Checked="Heat8to12_Checked" Style="{StaticResource RadioButton100}">8-12</RadioButton>
+                        <RadioButton x:Name="Heat13to16" Checked="Heat13to16_Checked" Style="{StaticResource RadioButton100}">13-16</RadioButton>
+                        <RadioButton x:Name="Heat17to23" Checked="Heat17to23_Checked" Style="{StaticResource RadioButton100}">17-23</RadioButton>
+                        <RadioButton x:Name="Heath24Plus" Checked="Heath24Plus_Checked" Style="{StaticResource RadioButton100}">24+</RadioButton>
+                    </StackPanel>
+                </StackPanel>
+                <NavigationViewItemSeparator/>
+                <StackPanel Style="{StaticResource Centered}">
+                    <TextBlock x:Name="targetBlockTitle" Text="Target:" Width="50" FontWeight="Bold"/>
+                    <TextBlock x:Name="targetBlock" Text="0" FontWeight="Bold"/>
+                    <TextBlock x:Name="targetBlockplus" Text="+" FontWeight="Bold"/>
+                </StackPanel>
+                <StackPanel Style="{StaticResource Centered}" Spacing="40">
+                    <TextBlock x:Name="diceResult1" Text="--" Height="32" FontSize="20"/>
+                    <Button x:Name="Roll" Content="Roll" Click="Roll_Click" Width="100" Height="32" Margin="0,20,0,20"/>
+                    <TextBlock x:Name="diceResult2" Text="--" Height="32" FontSize="20"/>
+                </StackPanel>
+                <NavigationViewItemSeparator/>
+                <StackPanel HorizontalAlignment="Center">
+                    <StackPanel Style="{StaticResource Centered}">
+                        <TextBox x:Name="TargetTextBox" AcceptsReturn="True" IsReadOnly="True" 
+                                 Width="500" Height="200" PlaceholderText="Waiting for rolls..." 
+                                 HorizontalTextAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Center" FontSize="20"/>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>

@@ -1,0 +1,77 @@
+﻿<Page
+    x:Class="BTApper.Views.MissileView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:BTApper.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" 
+    Tag="MissileView">
+
+    <Page.Resources>
+        <Style x:Name="Title" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Impact"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="36"/>
+            <Setter Property="Padding" Value="0,20,0,30"/>
+        </Style>
+        <Style x:Name="h1" TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="28"/>
+            <Setter Property="Padding" Value="0,20,0,20"/>
+        </Style>
+        <Style x:Name="h2" TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="Padding" Value="0,20,0,10"/>
+        </Style>
+        <Style x:Name="Centered" TargetType="StackPanel">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Orientation" Value="Horizontal"/>
+        </Style>
+        <Style x:Name="RadioButton50" TargetType="RadioButton">
+            <Setter Property="MinWidth" Value="0"/>
+            <Setter Property="Width" Value="50"/>
+            <Setter Property="Height" Value="32"/>
+        </Style>
+        <Style x:Name="RadioButton75" TargetType="RadioButton">
+            <Setter Property="MinWidth" Value="0"/>
+            <Setter Property="Width" Value="75"/>
+            <Setter Property="Height" Value="32"/>
+        </Style>
+        <Style x:Name="RadioButton100" TargetType="RadioButton">
+            <Setter Property="MinWidth" Value="0"/>
+            <Setter Property="Width" Value="100"/>
+            <Setter Property="Height" Value="32"/>
+        </Style>
+    </Page.Resources>
+
+    <Grid>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel VerticalAlignment="Center">
+                <TextBlock HorizontalAlignment="Center" Style="{StaticResource Title}">MISSILE</TextBlock>
+                <NavigationViewItemSeparator/>
+                <TextBlock HorizontalAlignment="Center" Style="{StaticResource h2}">Missile Type</TextBlock>
+                <StackPanel Style="{StaticResource Centered}">
+                    <RadioButton GroupName="Type">Missile</RadioButton>
+                    <RadioButton GroupName="Type">LB-X</RadioButton>
+                    <RadioButton GroupName="Type">Ultra</RadioButton>
+                    <RadioButton GroupName="Type">Rotary</RadioButton>
+                </StackPanel>
+                <TextBlock HorizontalAlignment="Center" Style="{StaticResource h2}">Missile Class</TextBlock>
+                <StackPanel Style="{StaticResource Centered}">
+                    <RadioButton GroupName="Class">2</RadioButton>
+                    <RadioButton GroupName="Class">5</RadioButton>
+                    <RadioButton GroupName="Class">10</RadioButton>
+                    <RadioButton GroupName="Class">20</RadioButton>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+
+    </Grid>
+</Page>
