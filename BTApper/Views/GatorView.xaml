@@ -96,7 +96,7 @@
                         </StackPanel>
                     </StackPanel>
                     <StackPanel>
-                        <TextBlock x:Name="InterveningTitle" HorizontalAlignment="Center">Intervening Modifiers</TextBlock>
+                        <TextBlock x:Name="InterveningTitle" HorizontalAlignment="Center">Terrain Modifiers (Other)</TextBlock>
                         <StackPanel Style="{StaticResource Centered}">
                             <RadioButton GroupName="O" x:Name="O0" Content="+0" Checked="O0_Checked" Style="{StaticResource RadioButton50}"/>
                             <RadioButton GroupName="O" x:Name="O1" Content="+1" Checked="O1_Checked" Style="{StaticResource RadioButton50}"/>

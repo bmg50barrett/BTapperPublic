@@ -15,23 +15,38 @@
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="FontSize" Value="36"/>
-            <Setter Property="Padding" Value="0,20,0,30"/>
+            <Setter Property="Padding" Value="0,0,0,10"/>
         </Style>
-        <Style x:Name="h1" TargetType="TextBlock">
+        <Style x:Name="LeaderText" TargetType="TextBlock">
             <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Setter Property="FontSize" Value="28"/>
-            <Setter Property="Padding" Value="0,20,0,20"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="MinWidth" Value="130"/>
+            <Setter Property="Padding" Value="0,0,5,0"/>
+            <Setter Property="FontWeight" Value="Bold"/>
         </Style>
-        <Style x:Name="h2" TargetType="TextBlock">
-            <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Setter Property="FontSize" Value="24"/>
-            <Setter Property="Padding" Value="0,20,0,10"/>
+        <Style x:Name="StatText" TargetType="TextBox">
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="MinWidth" Value="100"/>
+            <Setter Property="Margin" Value="10,0,10,0"/>
+            <Setter Property="IsReadOnly" Value="True"/>
+        </Style>
+        <Style x:Name="MinorText" TargetType="TextBlock">
+            <Setter Property="TextDecorations" Value="Underline"/>
+            <Setter Property="Padding" Value="0,10,0,0"/>
         </Style>
         <Style x:Name="Centered" TargetType="StackPanel">
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Orientation" Value="Horizontal"/>
+        </Style>
+        <Style x:Name="CenteredVert" TargetType="StackPanel">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Orientation" Value="Vertical"/>
+        </Style>
+        <Style x:Name="LeftAlign" TargetType="StackPanel">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
             <Setter Property="Orientation" Value="Horizontal"/>
         </Style>
         <Style x:Name="RadioButton50" TargetType="RadioButton">
@@ -39,33 +54,76 @@
             <Setter Property="Width" Value="50"/>
             <Setter Property="Height" Value="32"/>
         </Style>
-        <Style x:Name="RadioButton75" TargetType="RadioButton">
-            <Setter Property="MinWidth" Value="0"/>
-            <Setter Property="Width" Value="75"/>
-            <Setter Property="Height" Value="32"/>
-        </Style>
-        <Style x:Name="RadioButton100" TargetType="RadioButton">
-            <Setter Property="MinWidth" Value="0"/>
-            <Setter Property="Width" Value="100"/>
-            <Setter Property="Height" Value="32"/>
-        </Style>
     </Page.Resources>
 
     <Grid>
-        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-            <StackPanel VerticalAlignment="Center">
-                <TextBlock HorizontalAlignment="Center" Style="{StaticResource Title}">LASER</TextBlock>
+        <StackPanel x:Name="LaserShapingPanel" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <StackPanel x:Name="LaserControlPanel" VerticalAlignment="Center">
+                <TextBlock HorizontalAlignment="Center" Style="{StaticResource Title}">ENERGY</TextBlock>
                 <NavigationViewItemSeparator/>
-                <TextBlock HorizontalAlignment="Center" Style="{StaticResource h2}">Laser Type</TextBlock>
-                <StackPanel Style="{StaticResource Centered}">
-                    <RadioButton GroupName="Type">Laser</RadioButton>
-                    <RadioButton GroupName="Type">Pulse Laser</RadioButton>
+                <StackPanel Style="{StaticResource CenteredVert}">
+                    <TextBlock Style="{StaticResource LeaderText}" >Weapon Class:</TextBlock>
+                    <TextBlock Style="{StaticResource MinorText}">Basic</TextBlock>
+                    <StackPanel Style="{StaticResource LeftAlign}">
+                        <RadioButton x:Name="smallLaserButton" GroupName="Class" Checked="smallLaserButton_Checked" >Small</RadioButton>
+                        <RadioButton x:Name="mediumLaserButton" GroupName="Class" Checked="mediumLaserButton_Checked" >Medium</RadioButton>
+                        <RadioButton x:Name="largeLaserButton" GroupName="Class" Checked="largeLaserButton_Checked" >Large</RadioButton>
+                    </StackPanel>
+                    <TextBlock Style="{StaticResource MinorText}">Particle Projector</TextBlock>
+                    <StackPanel Style="{StaticResource LeftAlign}">
+                        <RadioButton x:Name="snubPPCButton" GroupName="Class" Checked="snubPPCButton_Checked">Snub PPC*</RadioButton>
+                        <RadioButton x:Name="lightPPCButton" GroupName="Class" Checked="lightPPCButton_Checked">Light PPC</RadioButton>
+                        <RadioButton x:Name="PPCButton" GroupName="Class" Checked="PPCButton_Checked">PPC</RadioButton>
+                        <RadioButton x:Name="heavyPPCButton" GroupName="Class" Checked="heavyPPCButton_Checked">Heavy PPC</RadioButton>
+                    </StackPanel>
+                    <TextBlock Style="{StaticResource MinorText}">Extended Range</TextBlock>
+                    <StackPanel Style="{StaticResource LeftAlign}">
+                        <RadioButton x:Name="erSmallButton" GroupName="Class" Checked="erSmallButton_Checked">ER Small</RadioButton>
+                        <RadioButton x:Name="erMedButton" GroupName="Class" Checked="erMedButton_Checked">ER Med</RadioButton>
+                        <RadioButton x:Name="erLargeButton" GroupName="Class" Content="ER Large" Checked="erLargeButton_Checked"/>
+                        <RadioButton x:Name="erPPCButton" GroupName="Class" Content="ER PPC" Checked="erPPCButton_Checked"/>
+                    </StackPanel>
+                    <TextBlock Style="{StaticResource MinorText}">Pulse</TextBlock>
+                    <StackPanel Style="{StaticResource LeftAlign}">
+                        <RadioButton x:Name="smallPulseButton" GroupName="Class" Checked="smallPulseButton_Checked">Small Pulse</RadioButton>
+                        <RadioButton x:Name="medPulseButton" GroupName="Class" Checked="medPulseButton_Checked">Med Pulse</RadioButton>
+                        <RadioButton x:Name="largePulseButton" GroupName="Class" Checked="largePulseButton_Checked">Large Pulse</RadioButton>
+                    </StackPanel>
+                    <TextBlock Style="{StaticResource MinorText}">Heat</TextBlock>
+                    <StackPanel Style="{StaticResource LeftAlign}">
+                        <RadioButton x:Name="flamerButton" GroupName="Class" Checked="flamerButton_Checked">Flamer</RadioButton>
+                        <RadioButton x:Name="plasmaRifleButton" GroupName="Class" Checked="plasmaRifleButton_Checked">Plasma Rifle</RadioButton>
+                    </StackPanel>
+                    <NavigationViewItemSeparator/>
                 </StackPanel>
-                <TextBlock HorizontalAlignment="Center" Style="{StaticResource h2}">Laser Class</TextBlock>
                 <StackPanel Style="{StaticResource Centered}">
-                    <RadioButton GroupName="Class">Small</RadioButton>
-                    <RadioButton GroupName="Class">Medium</RadioButton>
-                    <RadioButton GroupName="Class">Large</RadioButton>
+                    <Image Source="/Assets/explosion.png" Width="20" Height="20"/>
+                    <TextBox x:Name="EnergyDamage" PlaceholderText="Damage" Style="{StaticResource StatText}"></TextBox>
+                    <TextBox x:Name="EnergyHeat" PlaceholderText="Heat" Style="{StaticResource StatText}"></TextBox>
+                    <Image Source="/Assets/heat.png" Width="20" Height="20"/>
+                </StackPanel>
+                <NavigationViewItemSeparator/>
+                <TextBlock Style="{StaticResource MinorText}">Facing</TextBlock>
+                <StackPanel Style="{StaticResource LeftAlign}">
+                    <RadioButton x:Name="frontFaceButton" GroupName="Face" Checked="frontFaceButton_Checked">Front</RadioButton>
+                    <RadioButton x:Name="rightFaceButton" GroupName="Face" Checked="rightFaceButton_Checked">Right Side</RadioButton>
+                    <RadioButton x:Name="leftFaceButton" GroupName="Face" Checked="leftFaceButton_Checked">Left Side</RadioButton>
+                    <RadioButton x:Name="rearFaceButton" GroupName="Face" Checked="rearFaceButton_Checked">Rear</RadioButton>
+                </StackPanel>
+                <NavigationViewItemSeparator/>
+                <StackPanel Style="{StaticResource Centered}" Spacing="40">
+                    <TextBlock x:Name="energyDice1block" Text="--" Height="32" FontSize="20"/>
+                    <Button x:Name="EnergyRoll" Content="Roll" Click="EnergyRoll_Click" Width="100" Height="32" Margin="0,20,0,20"/>
+                    <TextBlock x:Name="energyDice2block" Text="--" Height="32" FontSize="20"/>
+                </StackPanel>
+                <NavigationViewItemSeparator/>
+                <StackPanel HorizontalAlignment="Center">
+                    <StackPanel Style="{StaticResource Centered}">
+                        <TextBox x:Name="EnergyTextBox" AcceptsReturn="True" IsReadOnly="True" 
+                                 Width="500" Height="200" PlaceholderText="Waiting for rolls..." 
+                                 HorizontalTextAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Center" FontSize="18"/>
+                    </StackPanel>
+                    <TextBlock Margin="0,10,0,0" HorizontalAlignment="Center" Foreground="Gray">* Snub-Nose PPCs deal 10/8/5 damage at Short/Med/Long Range.</TextBlock>
                 </StackPanel>
             </StackPanel>
         </StackPanel>

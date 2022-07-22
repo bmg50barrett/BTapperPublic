@@ -138,6 +138,7 @@
     <Compile Include="Views\MissileView.xaml.cs">
       <DependentUpon>MissileView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Weapon.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -150,6 +151,8 @@
     <Content Include="Assets\BadgeLogo.scale-150.png" />
     <Content Include="Assets\BadgeLogo.scale-200.png" />
     <Content Include="Assets\BadgeLogo.scale-400.png" />
+    <Content Include="Assets\explosion.png" />
+    <Content Include="Assets\heat.png" />
     <Content Include="Assets\LargeTile.scale-100.png" />
     <Content Include="Assets\LargeTile.scale-125.png" />
     <Content Include="Assets\LargeTile.scale-150.png" />
