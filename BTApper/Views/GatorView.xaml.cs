@@ -500,6 +500,7 @@ namespace BTApper.Views
             gator.computeGator(gunneryMod, attackerMod, targetMod, otherMod, rangeMod, miscMod, heatMod);
             UpdateTargetBlock(gator.GetValue());
         }
+
         private void PulseCheck_Unchecked(object sender, RoutedEventArgs e)
         {
             miscMod.Increment();
@@ -514,6 +515,7 @@ namespace BTApper.Views
             gator.computeGator(gunneryMod, attackerMod, targetMod, otherMod, rangeMod, miscMod, heatMod);
             UpdateTargetBlock(gator.GetValue());
         }
+
         private void TargetingComputerCheck_Unchecked(object sender, RoutedEventArgs e)
         {
             miscMod.Increment();
@@ -547,14 +549,13 @@ namespace BTApper.Views
             gator.computeGator(gunneryMod, attackerMod, targetMod, otherMod, rangeMod, miscMod, heatMod);
             UpdateTargetBlock(gator.GetValue());
         }
+
         private void ActuatorCheck_Unchecked(object sender, RoutedEventArgs e)
         {
             miscMod.Decrement();
             gator.computeGator(gunneryMod, attackerMod, targetMod, otherMod, rangeMod, miscMod, heatMod);
             UpdateTargetBlock(gator.GetValue());
         }
-
-
 
         private void SensorHit_Checked(object sender, RoutedEventArgs e)
         {
@@ -642,7 +643,7 @@ namespace BTApper.Views
             UpdateTargetBlock(gator.GetValue());
         }
 
-        private void Heath24Plus_Checked(object sender, RoutedEventArgs e)
+        private void Heat24Plus_Checked(object sender, RoutedEventArgs e)
         {
             heatMod.SetValue(4);
             gator.computeGator(gunneryMod, attackerMod, targetMod, otherMod, rangeMod, miscMod, heatMod);

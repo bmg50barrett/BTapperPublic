@@ -52,7 +52,7 @@
     </Page.Resources>
 
     <Grid>
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top">
             <StackPanel VerticalAlignment="Center">
                 <TextBlock HorizontalAlignment="Center" Style="{StaticResource Title}">MISSILE</TextBlock>
                 <NavigationViewItemSeparator/>

@@ -15,6 +15,7 @@ namespace BTApper
         private bool isMulti = false;
         private bool isHeater = false;
         private String weaponName = "None";
+        private String note = "";
 
         public Weapon() { }
 
@@ -23,9 +24,9 @@ namespace BTApper
             this.shots = shots;
             this.heat = heat;
             this.damage = damage;
-            isCluster = false;
-            isMulti = false;
-            isHeater = false;
+            this.isCluster = false;
+            this.isMulti = false;
+            this.isHeater = false;
         }
 
         public Weapon(String name, int shots, int heat, int damage)
@@ -67,6 +68,17 @@ namespace BTApper
             this.isCluster = isCluster;
             this.isMulti = isMulti;
             this.isHeater = isHeater;
+        }
+        public Weapon(String name, int shots, int heat, int damage, bool isCluster, bool isMulti, bool isHeater, String note)
+        {
+            this.weaponName = name;
+            this.shots = shots;
+            this.heat = heat;
+            this.damage = damage;
+            this.isCluster = isCluster;
+            this.isMulti = isMulti;
+            this.isHeater = isHeater;
+            this.note = note;
         }
 
         public String GetName()
@@ -164,5 +176,14 @@ namespace BTApper
             isHeater = b;
         }
 
+        public String GetNote()
+        {
+            return note;
+        }
+
+        public void SetNote(String s)
+        {
+            this.note = s;
+        }
     }
 }
