@@ -2,10 +2,125 @@
     x:Class="BTApper.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:BTApper">
+    xmlns:local="using:BTApper"
+    RequestedTheme="Dark">
 
     <Application.Resources>
-        <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
+        <!-- <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" /> -->
+        
+        <!--===========  B U T T O N   S T Y L I N G  ===========-->
+        <Style x:Key="RollButton" TargetType="Button">
+            <Setter Property="Width" Value="100"/>
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="Margin" Value="0,10,0,10"/>
+            <Setter Property="FontFamily" Value="Steiner"/>
+        </Style>
+        <Style x:Key="ShotButton" TargetType="ToggleButton">
+            <Setter Property="Margin" Value="10"/>
+        </Style>
+
+        <!--===========  T E X T   S T Y L I N G  ===========-->
+        <Style x:Key="Title" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Steiner"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="36"/>
+            <Setter Property="Padding" Value="0,20,0,10"/>
+        </Style>
+        <Style x:Key="LeaderText" TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="MinWidth" Value="130"/>
+            <Setter Property="Padding" Value="0,0,5,0"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+        <Style x:Key="StatText" TargetType="TextBlock">
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Width" Value="35"/>
+            <Setter Property="Margin" Value="0,0,0,0"/>
+            <Setter Property="FontFamily" Value="Steiner"/>
+            <Setter Property="FontSize" Value="20"/>
+        </Style>
+        <Style x:Key="MultiX" BasedOn="{StaticResource StatText}" TargetType="TextBlock">
+            <Setter Property="Text" Value="X"/>
+            <Setter Property="TextAlignment" Value="Left"/>
+        </Style>
+        <Style x:Key="MinorText" TargetType="TextBlock">
+            <Setter Property="TextDecorations" Value="Underline"/>
+            <Setter Property="Padding" Value="0,10,0,0"/>
+        </Style>
+        <Style x:Key="RollResultText" TargetType="TextBlock">
+            <Setter Property="Width" Value="32"/>
+            <Setter Property="Height" Value="32"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontFamily" Value="Steiner"/>
+            <Setter Property="HorizontalTextAlignment" Value="Left"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+        </Style>
+        <Style x:Key="RollerTextBox" TargetType="TextBox">
+            <Setter Property="AcceptsReturn" Value="True"/>
+            <Setter Property="IsReadOnly" Value="True"/>
+            <Setter Property="PlaceholderText" Value="Waiting For Rolls..."/>
+            <Setter Property="HorizontalTextAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="BorderThickness" Value="0"/>
+        </Style>
+        <Style x:Key="SpecialNotes" TargetType="TextBlock">
+            <Setter Property="Margin" Value="10,10,0,0"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="Gray"/>
+        </Style>
+
+        <!--===========  P A N E L   S T Y L I N G  ===========-->
+        <Style x:Key="WholeStacker" TargetType="StackPanel">
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="Orientation" Value="Horizontal"/>
+            <Setter Property="Margin" Value="40"/>
+        </Style>
+        <Style x:Key="Centered" TargetType="StackPanel">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Orientation" Value="Horizontal"/>
+        </Style>
+        <Style x:Key="CenteredVert" TargetType="StackPanel">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Orientation" Value="Vertical"/>
+        </Style>
+        <Style x:Key="Lefted" TargetType="StackPanel">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Orientation" Value="Horizontal"/>
+        </Style>
+
+        <!--===========  R A D I O   S T Y L I N G  ===========-->
+        <Style x:Key="RadioButtonMain" TargetType="RadioButton">
+            <Setter Property="MinWidth" Value="0"/>
+            <Setter Property="Width" Value="75"/>
+            <Setter Property="Height" Value="32"/>
+        </Style>
+        <Style x:Key="RadioButtonWide" TargetType="RadioButton">
+            <Setter Property="MinWidth" Value="0"/>
+            <Setter Property="Width" Value="100"/>
+            <Setter Property="Height" Value="32"/>
+        </Style>
+
+        <!--===========  C H E C K   S T Y L I N G  ===========-->
+        <Style x:Key="CheckboxMain" TargetType="CheckBox">
+            <Setter Property="MinWidth" Value="0"/>
+            <Setter Property="Width" Value="150"/>
+            <Setter Property="Height" Value="32"/>
+        </Style>
+
+        <!--===========  I M A G E   S T Y L I N G  ===========-->
+        <Style x:Key="NumberIcons" TargetType="Image">
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Width" Value="40"/>
+            <Setter Property="Margin" Value="20,0,0,0"/>
+        </Style>
     </Application.Resources>
-    
 </Application>

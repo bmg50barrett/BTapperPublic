@@ -4,21 +4,19 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Animation;
-
-
-// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
+using Windows.UI.ViewManagement;
+using Windows.Foundation;
 
 namespace BTApper
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
+
     public sealed partial class MainPage : Page
     {
         private Windows.UI.Xaml.Controls.NavigationViewItem _lastitem;
         public MainPage()
         {
-
+            ApplicationView.PreferredLaunchViewSize = new Size(1400, 1000);
+            ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
             this.InitializeComponent();
             this.NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Required;
         }
@@ -53,13 +51,15 @@ namespace BTApper
 
         private void NavView_Loaded(object sender, RoutedEventArgs e)
         {
-            foreach(Windows.UI.Xaml.Controls.NavigationViewItemBase item in NavView.MenuItems)
+            NavView.IsPaneOpen = false;
+            foreach (Windows.UI.Xaml.Controls.NavigationViewItemBase item in NavView.MenuItems)
             {
                 if(item is Windows.UI.Xaml.Controls.NavigationViewItem && item.Tag.ToString() == "GatorView")
                 {
                     NavView.SelectedItem = item;
                     break;
                 }
+                
             }
             ContentFrame.Navigate(typeof(BTApper.Views.GatorView));
         }

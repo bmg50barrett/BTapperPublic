@@ -11,12 +11,14 @@
     <Grid x:Name="PageGrid">
         <NavigationView x:Name="NavView" ItemInvoked="NavView_ItemInvoked" Loaded="NavView_Loaded" 
                         SelectionChanged="NavView_SelectionChanged" BackRequested="NavView_BackRequested" 
-                        IsBackEnabled="{Binding ElementName=ContentFrame, Path=CanGoBack}">
+                        IsBackEnabled="{Binding ElementName=ContentFrame, Path=CanGoBack}" IsPaneOpen="False">
             <NavigationView.MenuItems>
-                <NavigationViewItem Content="GATOR" Tag="GatorView" Icon="Calculator"/>
+                <NavigationViewItem Content="To-Hit Calculator (G.A.T.O.R.)" Tag="GatorView" Icon="Calculator"/>
+                <NavigationViewItemSeparator/>
                 <NavigationViewItem Content="Energy" Tag="EnergyView" Icon="FullScreen"/>
                 <NavigationViewItem Content="Ballistic" Tag="BallisticView" Icon="Rotate"/>
                 <NavigationViewItem Content="Missile" Tag="MissileView" Icon="Placeholder"/>
+                <NavigationViewItemSeparator/>
             </NavigationView.MenuItems>
             <Frame x:Name="ContentFrame" NavigationFailed="ContentFrame_NavigationFailed"></Frame>
         </NavigationView>

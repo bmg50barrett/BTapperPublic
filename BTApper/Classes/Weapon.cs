@@ -8,7 +8,7 @@ namespace BTApper
 {
     internal class Weapon
     {
-        private int shots = 1;
+        private int maxShots = 1;
         private int damage = 1;
         private int heat = 1;
         private bool isCluster = false;
@@ -19,9 +19,15 @@ namespace BTApper
 
         public Weapon() { }
 
+        public Weapon(int dmg, int heat)
+        {
+            this.damage = dmg;
+            this.heat = heat;
+        }
+
         public Weapon (int shots, int heat, int damage)
         {
-            this.shots = shots;
+            this.maxShots = shots;
             this.heat = heat;
             this.damage = damage;
             this.isCluster = false;
@@ -32,7 +38,7 @@ namespace BTApper
         public Weapon(String name, int shots, int heat, int damage)
         {
             this.weaponName = name;
-            this.shots = shots;
+            this.maxShots = shots;
             this.heat = heat;
             this.damage = damage;
             isCluster = false;
@@ -42,7 +48,7 @@ namespace BTApper
 
         public Weapon(int shots, int heat, int damage, bool isCluster, bool isMulti)
         {
-            this.shots = shots;
+            this.maxShots = shots;
             this.heat = heat;
             this.damage = damage;
             this.isCluster = isCluster;
@@ -51,7 +57,7 @@ namespace BTApper
 
         public Weapon(int shots, int heat, int damage, bool isCluster, bool isMulti,bool isHeater)
         {
-            this.shots = shots;
+            this.maxShots = shots;
             this.heat = heat;
             this.damage = damage;
             this.isCluster = isCluster;
@@ -62,7 +68,7 @@ namespace BTApper
         public Weapon(String name, int shots, int heat, int damage, bool isCluster, bool isMulti, bool isHeater)
         {
             this.weaponName = name;
-            this.shots = shots;
+            this.maxShots = shots;
             this.heat = heat;
             this.damage = damage;
             this.isCluster = isCluster;
@@ -72,7 +78,7 @@ namespace BTApper
         public Weapon(String name, int shots, int heat, int damage, bool isCluster, bool isMulti, bool isHeater, String note)
         {
             this.weaponName = name;
-            this.shots = shots;
+            this.maxShots = shots;
             this.heat = heat;
             this.damage = damage;
             this.isCluster = isCluster;
@@ -86,24 +92,24 @@ namespace BTApper
             return weaponName;
         }
 
-        public int GetShots()
+        public int GetMaxShots()
         {
-            return shots;
+            return maxShots;
         }
 
-        public void SetShots(int n)
+        public void SetMaxShots(int n)
         {
-            this.shots = n;
+            this.maxShots = n;
         }
 
         public void IncrementShots()
         {
-            this.shots++;
+            this.maxShots++;
         }
 
         public void DecrementShots()
         {
-            this.shots--;
+            this.maxShots--;
         }
 
         public int GetHeat()

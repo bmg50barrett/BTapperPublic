@@ -1,0 +1,64 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style x:Name="Title" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="Steiner"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="FontSize" Value="36"/>
+        <Setter Property="Padding" Value="0,20,0,10"/>
+    </Style>
+    <Style x:Name="LeaderText" TargetType="TextBlock">
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="MinWidth" Value="130"/>
+        <Setter Property="Padding" Value="0,0,5,0"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+    </Style>
+    <Style x:Name="StatText" TargetType="TextBox">
+        <Setter Property="TextAlignment" Value="Center"/>
+        <Setter Property="MinWidth" Value="100"/>
+        <Setter Property="Margin" Value="10,0,10,0"/>
+        <Setter Property="IsReadOnly" Value="True"/>
+    </Style>
+    <Style x:Name="MinorText" TargetType="TextBlock">
+        <Setter Property="TextDecorations" Value="Underline"/>
+        <Setter Property="Padding" Value="0,10,0,0"/>
+    </Style>
+    <Style x:Name="Centered" TargetType="StackPanel">
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="Orientation" Value="Horizontal"/>
+    </Style>
+    <Style x:Name="CenteredVert" TargetType="StackPanel">
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="Orientation" Value="Vertical"/>
+    </Style>
+    <Style x:Name="LeftAlign" TargetType="StackPanel">
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="Orientation" Value="Horizontal"/>
+    </Style>
+    <Style x:Name="RadioButtonMain" TargetType="RadioButton">
+        <Setter Property="MinWidth" Value="0"/>
+        <Setter Property="Width" Value="75"/>
+        <Setter Property="Height" Value="32"/>
+    </Style>
+    <Style x:Name="RadioButtonWide" TargetType="RadioButton">
+        <Setter Property="MinWidth" Value="0"/>
+        <Setter Property="Width" Value="100"/>
+        <Setter Property="Height" Value="32"/>
+    </Style>
+    <Style x:Name="CheckboxMain" TargetType="CheckBox">
+        <Setter Property="MinWidth" Value="0"/>
+        <Setter Property="Width" Value="150"/>
+        <Setter Property="Height" Value="32"/>
+    </Style>
+    <Style x:Name="Lefted" TargetType="StackPanel">
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="Orientation" Value="Horizontal"/>
+    </Style>
+
+</ResourceDictionary>

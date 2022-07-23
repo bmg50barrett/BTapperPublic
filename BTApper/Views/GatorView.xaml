@@ -9,56 +9,10 @@
     Tag="GatorView"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Page.Resources>
-        <Style x:Name="Title" TargetType="TextBlock">
-            <Setter Property="FontFamily" Value="Impact"/>
-            <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Setter Property="FontSize" Value="36"/>
-            <Setter Property="Padding" Value="0,20,0,10"/>
-        </Style>
-        <Style x:Name="LeaderText" TargetType="TextBlock">
-            <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="HorizontalAlignment" Value="Left"/>
-            <Setter Property="MinWidth" Value="130"/>
-            <Setter Property="Padding" Value="0,0,5,0"/>
-            <Setter Property="FontWeight" Value="Bold"/>
-        </Style>
-        <Style x:Name="MinorText" TargetType="TextBlock">
-            <Setter Property="TextDecorations" Value="Underline"/>
-            <Setter Property="Padding" Value="0,10,0,0"/>
-        </Style>
-        <Style x:Name="Centered" TargetType="StackPanel">
-            <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Setter Property="Orientation" Value="Horizontal"/>
-        </Style>
-        <Style x:Name="Lefted" TargetType="StackPanel">
-            <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="HorizontalAlignment" Value="Left"/>
-            <Setter Property="Orientation" Value="Horizontal"/>
-        </Style>
-        <Style x:Name="RadioButtonMain" TargetType="RadioButton">
-            <Setter Property="MinWidth" Value="0"/>
-            <Setter Property="Width" Value="75"/>
-            <Setter Property="Height" Value="32"/>
-        </Style>
-        <Style x:Name="RadioButtonWide" TargetType="RadioButton">
-            <Setter Property="MinWidth" Value="0"/>
-            <Setter Property="Width" Value="100"/>
-            <Setter Property="Height" Value="32"/>
-        </Style>
-        <Style x:Name="CheckboxMain" TargetType="CheckBox">
-            <Setter Property="MinWidth" Value="0"/>
-            <Setter Property="Width" Value="150"/>
-            <Setter Property="Height" Value="32"/>
-        </Style>
-    </Page.Resources>
-
     <Grid x:Name="PageGrid">
-        <StackPanel x:Name="WholeStacker" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top">
+        <StackPanel  Style="{StaticResource WholeStacker}">
             <StackPanel x:Name="MainColumn" HorizontalAlignment="Center" VerticalAlignment="Top">
-                <TextBlock Style="{StaticResource Title}">G.A.T.O.R.</TextBlock>
+                <TextBlock Style="{StaticResource Title}">TO-HIT CALCULATOR</TextBlock>
                 <NavigationViewItemSeparator/>
                 <StackPanel>
                         <TextBlock  Style="{StaticResource MinorText}">Game Speed</TextBlock>
@@ -106,7 +60,7 @@
                         </StackPanel>
                     </StackPanel>
                     <StackPanel>
-                        <TextBlock x:Name="InterveningTitle"  Style="{StaticResource MinorText}">Terrain Modifiers (Other)</TextBlock>
+                        <TextBlock x:Name="InterveningTitle"  Style="{StaticResource MinorText}">Terrain Modifier</TextBlock>
                     <StackPanel Style="{StaticResource Lefted}">
                             <RadioButton GroupName="O" x:Name="O0" Content="+0" Checked="O0_Checked" Style="{StaticResource RadioButtonMain}"/>
                             <RadioButton GroupName="O" x:Name="O1" Content="+1" Checked="O1_Checked" Style="{StaticResource RadioButtonMain}"/>
@@ -128,19 +82,6 @@
                         <RadioButton GroupName="R" x:Name="RE" Content="Ext" Checked="RE_Checked" Style="{StaticResource RadioButtonMain}"/>
                     </StackPanel>
                 </StackPanel>
-                <TextBlock Style="{StaticResource MinorText}">Miscellaneous</TextBlock>
-                    <StackPanel Style="{StaticResource Lefted}">
-                    <CheckBox x:Name="PulseCheck" Checked="PulseCheck_Checked" Unchecked="PulseCheck_Unchecked" Style="{StaticResource CheckboxMain}">Pulse Laser</CheckBox>
-                    <CheckBox x:Name="TargetingComputerCheck" Checked="TargetingComputerCheck_Checked" Unchecked="TargetingComputerCheck_Unchecked" Style="{StaticResource CheckboxMain}">T.Comp</CheckBox>
-                    <CheckBox x:Name="ShoulderCheck" Checked="ShoulderCheck_Checked" Unchecked="ShoulderCheck_Unchecked" Content="Shoulder Hit" Style="{StaticResource CheckboxMain}"/>
-                    <CheckBox x:Name="ActuatorCheck" Checked="ActuatorCheck_Checked" Unchecked="ActuatorCheck_Unchecked" Style="{StaticResource CheckboxMain}">L. Actuator Hit</CheckBox>
-                    </StackPanel>
-                    <StackPanel Style="{StaticResource Lefted}">
-                    <CheckBox x:Name="SensorHit" Checked="SensorHit_Checked" Unchecked="SensorHit_Unchecked" Style="{StaticResource CheckboxMain}">Sensor Hit</CheckBox>
-                    <CheckBox x:Name="Indirect" Checked="Indirect_Checked" Unchecked="Indirect_Unchecked" Style="{StaticResource CheckboxMain}">Indirect</CheckBox>
-                    <CheckBox x:Name="Secondary" Checked="Secondary_Checked" Unchecked="Secondary_Unchecked" Content="Secondary" Style="{StaticResource CheckboxMain}"/>
-                    <CheckBox x:Name="UActuatorHit" Checked="UActuatorHit_Checked" Unchecked="UActuatorHit_Unchecked" Style="{StaticResource CheckboxMain}">U. Actuator Hit</CheckBox>
-                    </StackPanel>
                 <TextBlock Style="{StaticResource MinorText}">Heat</TextBlock>
                 <StackPanel Style="{StaticResource Lefted}">
                     <RadioButton x:Name="Heat0to7" Checked="Heat0to7_Checked" Style="{StaticResource RadioButtonWide}">0-7</RadioButton>
@@ -149,24 +90,35 @@
                     <RadioButton x:Name="Heat17to23" Checked="Heat17to23_Checked" Style="{StaticResource RadioButtonWide}">17-23</RadioButton>
                     <RadioButton x:Name="Heat24Plus" Checked="Heat24Plus_Checked" Style="{StaticResource RadioButtonWide}">24+</RadioButton>
                 </StackPanel>
+                <TextBlock Style="{StaticResource MinorText}">Miscellaneous</TextBlock>
+                    <StackPanel Style="{StaticResource Lefted}">
+                    <CheckBox x:Name="PulseCheck" Checked="PulseCheck_Checked" Unchecked="PulseCheck_Unchecked" Style="{StaticResource CheckboxMain}">Pulse Laser</CheckBox>
+                    <CheckBox x:Name="TargetingComputerCheck" Checked="TargetingComputerCheck_Checked" Unchecked="TargetingComputerCheck_Unchecked" Style="{StaticResource CheckboxMain}">T.Comp</CheckBox>
+                    <CheckBox x:Name="ShoulderCheck" Checked="ShoulderCheck_Checked" Unchecked="ShoulderCheck_Unchecked" Content="Shoulder Hit" Style="{StaticResource CheckboxMain}"/>
+                    <CheckBox x:Name="ActuatorCheck" Checked="ActuatorCheck_Checked" Unchecked="ActuatorCheck_Unchecked" Style="{StaticResource CheckboxMain}">L. Actuator Hit</CheckBox>
+                    </StackPanel>
+                <StackPanel Style="{StaticResource Lefted}">
+                    <CheckBox x:Name="SensorHit" Checked="SensorHit_Checked" Unchecked="SensorHit_Unchecked" Style="{StaticResource CheckboxMain}">Sensor Hit</CheckBox>
+                    <CheckBox x:Name="Indirect" Checked="Indirect_Checked" Unchecked="Indirect_Unchecked" Style="{StaticResource CheckboxMain}">Indirect</CheckBox>
+                    <CheckBox x:Name="Secondary" Checked="Secondary_Checked" Unchecked="Secondary_Unchecked" Content="Secondary" Style="{StaticResource CheckboxMain}"/>
+                    <CheckBox x:Name="UActuatorHit" Checked="UActuatorHit_Checked" Unchecked="UActuatorHit_Unchecked" Style="{StaticResource CheckboxMain}">U. Actuator Hit</CheckBox>
+                </StackPanel>
                 <NavigationViewItemSeparator/>
                 <StackPanel Style="{StaticResource Centered}">
-                    <TextBlock x:Name="targetBlockTitle" Text="Target:" Width="50" FontWeight="Bold"/>
-                    <TextBlock x:Name="targetBlock" Text="0" FontWeight="Bold"/>
-                    <TextBlock x:Name="targetBlockplus" Text="+" FontWeight="Bold"/>
+                    <TextBlock x:Name="targetBlockTitle" Text="Target:" FontWeight="Bold" FontFamily="Steiner"/>
+                    <TextBlock x:Name="targetBlock" Text="0" FontFamily="Steiner" Margin="10,0,0,0"/>
+                    <TextBlock x:Name="targetBlockplus" Text="+" FontFamily="Steiner"/>
                 </StackPanel>
                 <StackPanel Style="{StaticResource Centered}" Spacing="40">
-                    <TextBlock x:Name="diceResult1" Text="--" Height="32" FontSize="20"/>
-                    <Button x:Name="Roll" Content="Roll" Click="Roll_Click" Width="100" Height="32" Margin="0,20,0,20"/>
-                    <TextBlock x:Name="diceResult2" Text="--" Height="32" FontSize="20"/>
+                    <TextBlock x:Name="diceResult1" Text="--" Style="{StaticResource RollResultText}"/>
+                    <Button x:Name="Roll" Content="Roll" Click="Roll_Click" Style="{StaticResource RollButton}"/>
+                    <TextBlock x:Name="diceResult2" Text="--"  Style="{StaticResource RollResultText}"/>
                 </StackPanel>
                 <NavigationViewItemSeparator/>
-                <StackPanel HorizontalAlignment="Center">
-                    <StackPanel Style="{StaticResource Centered}">
-                        <TextBox x:Name="TargetTextBox" AcceptsReturn="True" IsReadOnly="True" 
-                                 Width="600" Height="200" PlaceholderText="Waiting for rolls..." 
-                                 HorizontalTextAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Center" FontSize="18"/>
-                    </StackPanel>
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Center">
+                <StackPanel Style="{StaticResource Centered}">
+                    <TextBox x:Name="TargetTextBox" Style="{StaticResource RollerTextBox}"/>
                 </StackPanel>
             </StackPanel>
         </StackPanel>

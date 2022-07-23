@@ -13,8 +13,6 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
-
 namespace BTApper.Views
 {
 
@@ -56,7 +54,7 @@ namespace BTApper.Views
         static Weapon pulseLargeLaser = new Weapon(1, 10, 9);
 
         //Heat
-        static Weapon flamer = new Weapon("Flamer", 1, 2, 3, false, false, true, "* This weapon either does damage OR raises heat.");
+        static Weapon flamer = new Weapon("Flamer", 1, 3, 2, false, false, true, "* This weapon either does damage OR raises heat.");
         static Weapon plasmaRifle = new Weapon("Plasma Rifle", 1, 10, 10, false, false, true, "* This weapon causes the target to generate 1D6 heat.");
 
         //Array of Weapon Objects stores data about weapons in same order as EnergyView
@@ -122,118 +120,99 @@ namespace BTApper.Views
             
         }
 
+        //Reduces repeated code in button actions. Every button does the same four methods.
+        private void ButtonInternalUpdate(int first, int second)
+        {
+            EnergyDamage.Text = weaponArray[first, second].GetDamage().ToString();
+            EnergyHeat.Text = weaponArray[first, second].GetHeat().ToString();
+            EnergyShots.Text = weaponArray[first, second].GetMaxShots().ToString();
+            SpecialNotes.Text = weaponArray[first, second].GetNote();
+        }
+
+
+        //Weapon Button Actions
         private void smallLaserButton_Checked(object sender, RoutedEventArgs e)
         {
-            EnergyDamage.Text = weaponArray[0, 0].GetDamage().ToString();
-            EnergyHeat.Text = weaponArray[0, 0].GetHeat().ToString();
-            SpecialNotes.Text = weaponArray[0, 0].GetNote();
+            ButtonInternalUpdate(0, 0);
         }
 
         private void mediumLaserButton_Checked(object sender, RoutedEventArgs e)
         {
-            EnergyDamage.Text = weaponArray[0, 1].GetDamage().ToString();
-            EnergyHeat.Text = weaponArray[0, 1].GetHeat().ToString();
-            SpecialNotes.Text = weaponArray[0, 1].GetNote();
+            ButtonInternalUpdate(0, 1);
         }
 
         private void largeLaserButton_Checked(object sender, RoutedEventArgs e)
         {
-            EnergyDamage.Text = weaponArray[0, 2].GetDamage().ToString();
-            EnergyHeat.Text = weaponArray[0, 2].GetHeat().ToString();
-            SpecialNotes.Text = weaponArray[0, 2].GetNote();
+            ButtonInternalUpdate(0, 2);
         }
 
         private void snubPPCButton_Checked(object sender, RoutedEventArgs e)
         {
-            EnergyDamage.Text = weaponArray[0, 0].GetDamage().ToString();
-            EnergyHeat.Text = weaponArray[0, 0].GetHeat().ToString();
-            SpecialNotes.Text = weaponArray[0, 0].GetNote();
+            ButtonInternalUpdate(1, 0);
         }
 
         private void lightPPCButton_Checked(object sender, RoutedEventArgs e)
         {
-            EnergyDamage.Text = weaponArray[0, 0].GetDamage().ToString();
-            EnergyHeat.Text = weaponArray[0, 0].GetHeat().ToString();
-            SpecialNotes.Text = weaponArray[0, 0].GetNote();
+            ButtonInternalUpdate(1, 1);
         }
 
         private void PPCButton_Checked(object sender, RoutedEventArgs e)
         {
-            EnergyDamage.Text = weaponArray[0, 0].GetDamage().ToString();
-            EnergyHeat.Text = weaponArray[0, 0].GetHeat().ToString();
-            SpecialNotes.Text = weaponArray[0, 0].GetNote();
+            ButtonInternalUpdate(1, 2);
         }
 
         private void heavyPPCButton_Checked(object sender, RoutedEventArgs e)
         {
-            EnergyDamage.Text = weaponArray[0, 0].GetDamage().ToString();
-            EnergyHeat.Text = weaponArray[0, 0].GetHeat().ToString();
-            SpecialNotes.Text = weaponArray[0, 0].GetNote();
+            ButtonInternalUpdate(1, 3);
         }
 
         private void erSmallButton_Checked(object sender, RoutedEventArgs e)
         {
-            EnergyDamage.Text = weaponArray[0, 0].GetDamage().ToString();
-            EnergyHeat.Text = weaponArray[0, 0].GetHeat().ToString();
-            SpecialNotes.Text = weaponArray[0, 0].GetNote();
+            ButtonInternalUpdate(2, 0);
         }
 
         private void erMedButton_Checked(object sender, RoutedEventArgs e)
         {
-            EnergyDamage.Text = weaponArray[0, 0].GetDamage().ToString();
-            EnergyHeat.Text = weaponArray[0, 0].GetHeat().ToString();
-            SpecialNotes.Text = weaponArray[0, 0].GetNote();
+            ButtonInternalUpdate(2, 1);
         }
 
         private void erLargeButton_Checked(object sender, RoutedEventArgs e)
         {
-            EnergyDamage.Text = weaponArray[0, 0].GetDamage().ToString();
-            EnergyHeat.Text = weaponArray[0, 0].GetHeat().ToString();
-            SpecialNotes.Text = weaponArray[0, 0].GetNote();
+            ButtonInternalUpdate(2, 2);
         }
 
         private void erPPCButton_Checked(object sender, RoutedEventArgs e)
         {
-            EnergyDamage.Text = weaponArray[0, 0].GetDamage().ToString();
-            EnergyHeat.Text = weaponArray[0, 0].GetHeat().ToString();
-            SpecialNotes.Text = weaponArray[0, 0].GetNote();
+            ButtonInternalUpdate(2, 2);
         }
 
         private void smallPulseButton_Checked(object sender, RoutedEventArgs e)
         {
-            EnergyDamage.Text = weaponArray[0, 0].GetDamage().ToString();
-            EnergyHeat.Text = weaponArray[0, 0].GetHeat().ToString();
-            SpecialNotes.Text = weaponArray[0, 0].GetNote();
+            ButtonInternalUpdate(3, 0);
         }
 
         private void medPulseButton_Checked(object sender, RoutedEventArgs e)
         {
-            EnergyDamage.Text = weaponArray[0, 0].GetDamage().ToString();
-            EnergyHeat.Text = weaponArray[0, 0].GetHeat().ToString();
-            SpecialNotes.Text = weaponArray[0, 0].GetNote();
+            ButtonInternalUpdate(3, 1);
         }
 
         private void largePulseButton_Checked(object sender, RoutedEventArgs e)
         {
-            EnergyDamage.Text = weaponArray[0, 0].GetDamage().ToString();
-            EnergyHeat.Text = weaponArray[0, 0].GetHeat().ToString();
-            SpecialNotes.Text = weaponArray[0, 0].GetNote();
+            ButtonInternalUpdate(3, 2);
         }
 
         private void flamerButton_Checked(object sender, RoutedEventArgs e)
         {
-            EnergyDamage.Text = weaponArray[4, 0].GetDamage().ToString();
-            EnergyHeat.Text = weaponArray[4, 0].GetHeat().ToString();
-            SpecialNotes.Text = weaponArray[4, 0].GetNote();
+            ButtonInternalUpdate(4, 0);
         }
 
         private void plasmaRifleButton_Checked(object sender, RoutedEventArgs e)
         {
-            EnergyDamage.Text = weaponArray[4, 1].GetDamage().ToString();
-            EnergyHeat.Text = weaponArray[4, 1].GetHeat().ToString();
-            SpecialNotes.Text = weaponArray[4, 1].GetNote();
+            ButtonInternalUpdate(4, 1);
         }
 
+
+        //Facing Button Actions
         private void frontFaceButton_Checked(object sender, RoutedEventArgs e)
         {
             facingID = 0;
@@ -249,9 +228,10 @@ namespace BTApper.Views
             facingID = 2;
         }
 
+        //Rear facing has the same location roll as front facing.
         private void rearFaceButton_Checked(object sender, RoutedEventArgs e)
         {
-            //Rear facing has the same location roll as front facing.
+            
             facingID = 0;
         }
     }
