@@ -19,46 +19,65 @@ namespace BTApper.Views
     public sealed partial class MissileView : Page
     {
         //Create Dice Objects
-        Dice de1 = new Dice();
-        Dice de2 = new Dice();
-        Dice heatDice = new Dice();
+        Dice dice1 = new Dice();
+        Dice dice2 = new Dice();
 
         //Create facingID variable.
-        private int facingID = 1;
+        private int facingID = 0;
+
+        //Create ClusterHitsTable object
+        private ClusterHits MissileClusterHits = new ClusterHits();
+
+        //Create flag variables.
+        private bool clusterRoll = false;
+        private bool multishotRoll = false;
 
         //Create Weapon objects
         //Weapon object (Name, shots, heat, damage, cluster?, multishot?, notes)
         //Create filler weapon for large array
-        static Weapon extra = new Weapon(0, 0, 0);
+        static Weapon extra = new Weapon( 0, 0, 0);
 
-        //Basic
-        static Weapon smallLaser = new Weapon("Small Laser", 1, 1, 1);
-        static Weapon mediumLaser = new Weapon("Medium Laser", 1, 3, 5);
-        static Weapon largeLaser = new Weapon("Large Laser", 1, 8, 8);
+        //SRM
+        static Weapon srm2 = new Weapon(2, 2, 2, 2);
+        static Weapon srm4 = new Weapon(4, 2, 3, 2);
+        static Weapon srm6 = new Weapon(6, 2, 4, 2);
 
-        //Particle Projector
-        static Weapon snubPPC = new Weapon("Snub-Nose PPC", 1, 10, 10, false, false, false, "* Snub-Nose PPCs deal 10/8/5 damage at Short/Med/Long Range."); //damage changes based on range
-        static Weapon lightPPC = new Weapon(1, 5, 5);
-        static Weapon PPC = new Weapon(1, 10, 10);
-        static Weapon heavyPPC = new Weapon(1, 15, 15);
+        //SSRM
+        static Weapon ssrm2 = new Weapon(2, 2, 2, 2);
+        static Weapon ssrm4 = new Weapon(4, 2, 3, 2);
+        static Weapon ssrm6 = new Weapon(6, 2, 4, 2);
 
-        //Extended Range
-        static Weapon erSmallLaser = new Weapon(1, 2, 3);
-        static Weapon erMediumLaser = new Weapon(1, 5, 5);
-        static Weapon erLargeLaser = new Weapon(1, 12, 8);
-        static Weapon erPPC = new Weapon(1, 15, 10);
+        //MRM
+        static Weapon mrm10 = new Weapon(10, 5, 4, 1);
+        static Weapon mrm20 = new Weapon(20, 5, 6, 1);
+        static Weapon mrm30 = new Weapon(30, 5, 10, 1);
+        static Weapon mrm40 = new Weapon(40, 5, 12, 1);
 
-        //Pulse
-        static Weapon pulseSmallLaser = new Weapon(1, 2, 3);
-        static Weapon pulseMediumLaser = new Weapon(1, 4, 6);
-        static Weapon pulseLargeLaser = new Weapon(1, 10, 9);
+        //LRM
+        static Weapon lrm5 = new Weapon(5, 5, 2, 1);
+        static Weapon lrm10 = new Weapon(10, 5, 4, 1);
+        static Weapon lrm15 = new Weapon(15, 5, 5, 1);
+        static Weapon lrm20 = new Weapon(20, 5, 6, 1);
 
-        //Heat
-        static Weapon flamer = new Weapon("Flamer", 1, 3, 2, false, false, true, "* This weapon either does damage OR raises heat.");
-        static Weapon plasmaRifle = new Weapon("Plasma Rifle", 1, 10, 10, false, false, true, "* This weapon causes the target to generate 1D6 heat.");
+        //Rocket Launcher
+        static Weapon rl10 = new Weapon(10, 3, 1);
+        static Weapon rl15 = new Weapon(15, 4, 1);
+        static Weapon rl20 = new Weapon(20, 5, 1);
 
-        //Array of Weapon Objects stores data about weapons in same order as EnergyView
-        Weapon[,] weaponArray = new Weapon[5, 4] { { smallLaser, mediumLaser, largeLaser, extra }, { snubPPC, lightPPC, PPC, heavyPPC }, { erSmallLaser, erMediumLaser, erLargeLaser, erPPC }, { pulseSmallLaser, pulseMediumLaser, pulseLargeLaser, extra }, { flamer, plasmaRifle, extra, extra } };
+        //Other
+        static Weapon mml3 = new Weapon(0, 0, 0);
+        static Weapon mml5 = new Weapon(0, 0, 0);
+        static Weapon mml7 = new Weapon(0, 0, 0);
+        static Weapon mml9 = new Weapon(0, 0, 0);
+
+        //Array of Weapon Objects stores data about weapons in same order as MissileView
+        Weapon[,] weaponArray = new Weapon[6, 4] {
+            { srm2, srm4, srm6, extra },
+            { ssrm2, ssrm4, ssrm6, extra },
+            { mrm10, mrm20, mrm30, mrm40 },
+            { lrm5, lrm10, lrm15, lrm20 },
+            { rl10, rl15, rl20, extra },
+            { mml3, mml5, mml7, mml9 } };
 
         //Create Facing Array. 0 = front, 1 = right, 2 = left, 3 = rear.
         String[,] facingArray = {
@@ -80,14 +99,15 @@ namespace BTApper.Views
             this.InitializeComponent();
             this.NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Required;
             frontFaceButton.IsChecked = true;
-            smallLaserButton.IsChecked = true;
-            EnergyRoll2d6(de1, de2);
+            ac2Button.IsChecked = true;
+            ShotOne.IsChecked = true;
+            MissileRoll2d6(dice1, dice2);
         }
 
-        private void UpdateEnergyScreen(String s)
+        private void UpdateMissileScreen(String s)
         {
             //Single Element implemenation of text box.
-            EnergyTextBox.Text = Prepender(EnergyTextBox.Text, s);
+            MissileTextBox.Text = Prepender(MissileTextBox.Text, s);
         }
 
         private string Prepender(string str, string prepend)
@@ -97,142 +117,205 @@ namespace BTApper.Views
             return str;
         }
 
-        private void EnergyRoll2d6(Dice de1, Dice de2)
+        private void MissileRoll2d6(Dice dice1, Dice dice2)
         {
-            de1.RollDice();
-            de2.RollDice();
-            energyDice1block.Text = de1.GetValue().ToString();
-            energyDice2block.Text = de2.GetValue().ToString();
+            dice1.RollDice();
+            dice2.RollDice();
+            missileDice1block.Text = dice1.GetValue().ToString();
+            missileDice2block.Text = dice2.GetValue().ToString();
         }
 
-        private void EnergyRoll_Click(object sender, RoutedEventArgs e)
+        private void MissileRoll_Click(object sender, RoutedEventArgs e)
         {
-            EnergyRoll2d6(de1, de2);
-            int sum = de1.GetValue() + de2.GetValue();
-            if (plasmaRifleButton.IsChecked == true)
+            MissileRoll2d6(dice1, dice2);
+            int sum = dice1.GetValue() + dice2.GetValue();
+
+            if (clusterRoll == true && multishotRoll == true && Int16.Parse(MissileShots.Text) > 1)
             {
-                heatDice.RollDice();
-                UpdateEnergyScreen("You hit " + facingArray[sum - 1, facingID] + " for " + EnergyDamage.Text + " damage and " + heatDice.GetValue() + " heat!");
+                UpdateMissileScreen("==========");
+                int amountRoll = MissileClusterHits.GetClusterHits(sum, Int16.Parse(MissileShots.Text));
+                UpdateMissileScreen("Multi Shot Cluster Weapon! Hits: " + amountRoll + " out of " + MissileShots.Text + "!");
+                for (int i = 1; i <= amountRoll; i++)
+                {
+                    UpdateMissileScreen("Hit #" + i + "! You hit " + facingArray[sum - 1, facingID] + " for " + MissileDamage.Text + " damage!");
+                }
+
+
+            }
+            else if (clusterRoll == true && multishotRoll == true && Int16.Parse(MissileShots.Text) == 1)
+            {
+                UpdateMissileScreen("==========");
+                UpdateMissileScreen("You hit " + facingArray[sum - 1, facingID] + " for " + MissileDamage.Text + " damage!");
+
+
+            }
+            else if (clusterRoll == true && Int16.Parse(MissileShots.Text) == 1)
+            {
+                int amountRoll = MissileClusterHits.GetClusterHits(sum, Int16.Parse(MissileDamage.Text));
+                UpdateMissileScreen("==========");
+                UpdateMissileScreen("Single Shot Cluster Weapon! Hits: " + amountRoll + "!");
+
+
             }
             else
             {
-                UpdateEnergyScreen("You hit " + facingArray[sum - 1, facingID] + " for " + EnergyDamage.Text + " damage !");
+                UpdateMissileScreen("==========");
+                UpdateMissileScreen("You hit " + facingArray[sum - 1, facingID] + " for " + MissileDamage.Text + " damage!");
+
+
             }
 
         }
 
-        private void smallLaserButton_Checked(object sender, RoutedEventArgs e)
+        //Reduces repeated code in button actions. Every button does the same four methods.
+        private void ButtonInternalUpdate(int first, int second)
         {
-            EnergyDamage.Text = weaponArray[0, 0].GetDamage().ToString();
-            EnergyHeat.Text = weaponArray[0, 0].GetHeat().ToString();
-            SpecialNotes.Text = weaponArray[0, 0].GetNote();
+            MissileDamage.Text = weaponArray[first, second].GetDamage().ToString();
+            MissileHeat.Text = weaponArray[first, second].GetHeat().ToString();
+            SpecialNotes.Text = weaponArray[first, second].GetNote();
+            clusterRoll = weaponArray[first, second].GetCluster();
+            multishotRoll = weaponArray[first, second].GetMulti();
+            foreach (ToggleButton item in ShotPicker.Children)
+            {
+
+                if (Int16.Parse(item.Content.ToString()) <= weaponArray[first, second].GetMaxShots())
+                {
+
+                    item.IsEnabled = true;
+
+                }
+                else
+                {
+
+                    if (item.IsChecked == true)
+                    {
+
+                        ShotOne.IsChecked = true;
+
+                    }
+
+                    item.IsEnabled = false;
+
+                }
+            }
         }
 
-        private void mediumLaserButton_Checked(object sender, RoutedEventArgs e)
+        //Weapon Button Actions
+        private void ac2Button_Checked(object sender, RoutedEventArgs e)
         {
-            EnergyDamage.Text = weaponArray[0, 1].GetDamage().ToString();
-            EnergyHeat.Text = weaponArray[0, 1].GetHeat().ToString();
-            SpecialNotes.Text = weaponArray[0, 1].GetNote();
+            ButtonInternalUpdate(0, 0);
         }
 
-        private void largeLaserButton_Checked(object sender, RoutedEventArgs e)
+        private void ac5Button_Checked(object sender, RoutedEventArgs e)
         {
-            EnergyDamage.Text = weaponArray[0, 2].GetDamage().ToString();
-            EnergyHeat.Text = weaponArray[0, 2].GetHeat().ToString();
-            SpecialNotes.Text = weaponArray[0, 2].GetNote();
+            ButtonInternalUpdate(0, 1);
         }
 
-        private void snubPPCButton_Checked(object sender, RoutedEventArgs e)
+        private void ac10Button_Checked(object sender, RoutedEventArgs e)
         {
-            EnergyDamage.Text = weaponArray[1, 0].GetDamage().ToString();
-            EnergyHeat.Text = weaponArray[1, 0].GetHeat().ToString();
-            SpecialNotes.Text = weaponArray[1, 0].GetNote();
+            ButtonInternalUpdate(0, 2);
         }
 
-        private void lightPPCButton_Checked(object sender, RoutedEventArgs e)
+        private void ac20Button_Checked(object sender, RoutedEventArgs e)
         {
-            EnergyDamage.Text = weaponArray[1, 1].GetDamage().ToString();
-            EnergyHeat.Text = weaponArray[1, 1].GetHeat().ToString();
-            SpecialNotes.Text = weaponArray[1, 1].GetNote();
+            ButtonInternalUpdate(0, 3);
         }
 
-        private void PPCButton_Checked(object sender, RoutedEventArgs e)
+        private void uac2Button_Checked(object sender, RoutedEventArgs e)
         {
-            EnergyDamage.Text = weaponArray[1, 2].GetDamage().ToString();
-            EnergyHeat.Text = weaponArray[1, 2].GetHeat().ToString();
-            SpecialNotes.Text = weaponArray[1, 2].GetNote();
+            ButtonInternalUpdate(1, 0);
         }
 
-        private void heavyPPCButton_Checked(object sender, RoutedEventArgs e)
+        private void uac5Button_Checked(object sender, RoutedEventArgs e)
         {
-            EnergyDamage.Text = weaponArray[1, 3].GetDamage().ToString();
-            EnergyHeat.Text = weaponArray[1, 3].GetHeat().ToString();
-            SpecialNotes.Text = weaponArray[1, 3].GetNote();
+            ButtonInternalUpdate(1, 1);
         }
 
-        private void erSmallButton_Checked(object sender, RoutedEventArgs e)
+        private void uac10Button_Checked(object sender, RoutedEventArgs e)
         {
-            EnergyDamage.Text = weaponArray[2, 0].GetDamage().ToString();
-            EnergyHeat.Text = weaponArray[2, 0].GetHeat().ToString();
-            SpecialNotes.Text = weaponArray[2, 0].GetNote();
+            ButtonInternalUpdate(1, 2);
         }
 
-        private void erMedButton_Checked(object sender, RoutedEventArgs e)
+        private void uac20Button_Checked(object sender, RoutedEventArgs e)
         {
-            EnergyDamage.Text = weaponArray[2, 1].GetDamage().ToString();
-            EnergyHeat.Text = weaponArray[2, 1].GetHeat().ToString();
-            SpecialNotes.Text = weaponArray[2, 1].GetNote();
+            ButtonInternalUpdate(1, 3);
         }
 
-        private void erLargeButton_Checked(object sender, RoutedEventArgs e)
+        private void lightAC2Button_Checked(object sender, RoutedEventArgs e)
         {
-            EnergyDamage.Text = weaponArray[2, 2].GetDamage().ToString();
-            EnergyHeat.Text = weaponArray[2, 2].GetHeat().ToString();
-            SpecialNotes.Text = weaponArray[2, 2].GetNote();
+            ButtonInternalUpdate(2, 0);
         }
 
-        private void erPPCButton_Checked(object sender, RoutedEventArgs e)
+        private void lightAC5Button_Checked(object sender, RoutedEventArgs e)
         {
-            EnergyDamage.Text = weaponArray[2, 3].GetDamage().ToString();
-            EnergyHeat.Text = weaponArray[2, 3].GetHeat().ToString();
-            SpecialNotes.Text = weaponArray[2, 3].GetNote();
+            ButtonInternalUpdate(2, 1);
         }
 
-        private void smallPulseButton_Checked(object sender, RoutedEventArgs e)
+        private void rotaryAC2Button_Checked(object sender, RoutedEventArgs e)
         {
-            EnergyDamage.Text = weaponArray[3, 0].GetDamage().ToString();
-            EnergyHeat.Text = weaponArray[3, 0].GetHeat().ToString();
-            SpecialNotes.Text = weaponArray[3, 0].GetNote();
+            ButtonInternalUpdate(2, 2);
         }
 
-        private void medPulseButton_Checked(object sender, RoutedEventArgs e)
+        private void rotaryAC5Button_Checked(object sender, RoutedEventArgs e)
         {
-            EnergyDamage.Text = weaponArray[3, 1].GetDamage().ToString();
-            EnergyHeat.Text = weaponArray[3, 1].GetHeat().ToString();
-            SpecialNotes.Text = weaponArray[3, 1].GetNote();
+            ButtonInternalUpdate(2, 3);
+        }
+        private void lb2Button_Checked(object sender, RoutedEventArgs e)
+        {
+            ButtonInternalUpdate(3, 0);
         }
 
-        private void largePulseButton_Checked(object sender, RoutedEventArgs e)
+        private void lb5Button_Checked(object sender, RoutedEventArgs e)
         {
-            EnergyDamage.Text = weaponArray[3, 2].GetDamage().ToString();
-            EnergyHeat.Text = weaponArray[3, 2].GetHeat().ToString();
-            SpecialNotes.Text = weaponArray[3, 2].GetNote();
+            ButtonInternalUpdate(3, 1);
         }
 
-        private void flamerButton_Checked(object sender, RoutedEventArgs e)
+        private void lb10Button_Checked(object sender, RoutedEventArgs e)
         {
-            EnergyDamage.Text = weaponArray[4, 0].GetDamage().ToString();
-            EnergyHeat.Text = weaponArray[4, 0].GetHeat().ToString();
-            SpecialNotes.Text = weaponArray[4, 0].GetNote();
+            ButtonInternalUpdate(3, 2);
         }
 
-        private void plasmaRifleButton_Checked(object sender, RoutedEventArgs e)
+        private void lb20Button_Checked(object sender, RoutedEventArgs e)
         {
-            EnergyDamage.Text = weaponArray[4, 1].GetDamage().ToString();
-            EnergyHeat.Text = weaponArray[4, 1].GetHeat().ToString();
-            SpecialNotes.Text = weaponArray[4, 1].GetNote();
+            ButtonInternalUpdate(3, 3);
         }
 
+        private void lightGaussButton_Checked(object sender, RoutedEventArgs e)
+        {
+            ButtonInternalUpdate(4, 0);
+        }
+
+        private void GaussButton_Checked(object sender, RoutedEventArgs e)
+        {
+            ButtonInternalUpdate(4, 1);
+        }
+
+        private void heavyGaussButton_Checked(object sender, RoutedEventArgs e)
+        {
+            ButtonInternalUpdate(4, 2);
+        }
+
+        private void lgun_Checked(object sender, RoutedEventArgs e)
+        {
+            ButtonInternalUpdate(5, 0);
+        }
+
+        private void gun_Checked(object sender, RoutedEventArgs e)
+        {
+            ButtonInternalUpdate(5, 1);
+        }
+
+        private void hgun_Checked(object sender, RoutedEventArgs e)
+        {
+            ButtonInternalUpdate(5, 2);
+        }
+
+        private void ngun_Checked(object sender, RoutedEventArgs e)
+        {
+            ButtonInternalUpdate(5, 3);
+        }
+
+        //Facing Button Actions
         private void frontFaceButton_Checked(object sender, RoutedEventArgs e)
         {
             facingID = 0;
@@ -248,10 +331,71 @@ namespace BTApper.Views
             facingID = 2;
         }
 
+        //Rear facing has the same location roll as front facing.
         private void rearFaceButton_Checked(object sender, RoutedEventArgs e)
         {
-            //Rear facing has the same location roll as front facing.
             facingID = 0;
+        }
+
+        private void ShotOne_Checked(object sender, RoutedEventArgs e)
+        {
+            ShotTwo.IsChecked = false;
+            ShotThree.IsChecked = false;
+            ShotFour.IsChecked = false;
+            ShotFive.IsChecked = false;
+            ShotSix.IsChecked = false;
+            MissileShots.Text = "1";
+        }
+
+        private void ShotTwo_Checked(object sender, RoutedEventArgs e)
+        {
+            ShotOne.IsChecked = false;
+            ShotThree.IsChecked = false;
+            ShotFour.IsChecked = false;
+            ShotFive.IsChecked = false;
+            ShotSix.IsChecked = false;
+            MissileShots.Text = "2";
+        }
+
+        private void ShotThree_Checked(object sender, RoutedEventArgs e)
+        {
+            ShotOne.IsChecked = false;
+            ShotTwo.IsChecked = false;
+            ShotFour.IsChecked = false;
+            ShotFive.IsChecked = false;
+            ShotSix.IsChecked = false;
+            MissileShots.Text = "3";
+        }
+
+        private void ShotFour_Checked(object sender, RoutedEventArgs e)
+        {
+            ShotOne.IsChecked = false;
+            ShotTwo.IsChecked = false;
+            ShotThree.IsChecked = false;
+            ShotFive.IsChecked = false;
+            ShotSix.IsChecked = false;
+            MissileShots.Text = "4";
+
+        }
+
+        private void ShotFive_Checked(object sender, RoutedEventArgs e)
+        {
+            ShotOne.IsChecked = false;
+            ShotTwo.IsChecked = false;
+            ShotThree.IsChecked = false;
+            ShotFour.IsChecked = false;
+            ShotSix.IsChecked = false;
+            MissileShots.Text = "5";
+        }
+
+        private void ShotSix_Checked(object sender, RoutedEventArgs e)
+        {
+            ShotOne.IsChecked = false;
+            ShotTwo.IsChecked = false;
+            ShotThree.IsChecked = false;
+            ShotFour.IsChecked = false;
+            ShotFive.IsChecked = false;
+            MissileShots.Text = "6";
         }
     }
 }

@@ -9,20 +9,34 @@ namespace BTApper
     internal class Weapon
     {
         private int maxShots = 1;
+        private int shotGrouping = 1;
         private int damage = 1;
         private int heat = 1;
         private bool isCluster = false;
         private bool isMulti = false;
-        private bool isHeater = false;
-        private String weaponName = "None";
         private String note = "";
+        private int mmlSRMshotGrouping = 1;
+        private int mmlLRMshotGrouping = 1;
+        private int mmlSRMdmg = 1;
+        private int mmlLRMdmg = 2;
 
-        public Weapon() { }
-
-        public Weapon(int dmg, int heat)
+        public Weapon(int s, int sg, int h, int d)
         {
-            this.damage = dmg;
-            this.heat = heat;
+            this.maxShots = s;
+            this.shotGrouping = sg;
+            this.heat = h;
+            this.damage = d;
+        }
+
+        //Used my MML
+        public Weapon(int s, int srmGrouping, int lrmGrouping, int h, int srmdmg, int lrmdmg)
+        {
+            this.maxShots = s;
+            this.mmlSRMshotGrouping = srmGrouping;
+            this.mmlLRMshotGrouping = lrmGrouping;
+            this.heat = h;
+            this.mmlSRMdmg = srmdmg;
+            this.mmlLRMdmg = lrmdmg;
         }
 
         public Weapon (int shots, int heat, int damage)
@@ -32,18 +46,6 @@ namespace BTApper
             this.damage = damage;
             this.isCluster = false;
             this.isMulti = false;
-            this.isHeater = false;
-        }
-
-        public Weapon(String name, int shots, int heat, int damage)
-        {
-            this.weaponName = name;
-            this.maxShots = shots;
-            this.heat = heat;
-            this.damage = damage;
-            isCluster = false;
-            isMulti = false;
-            isHeater = false;
         }
 
         public Weapon(int shots, int heat, int damage, bool isCluster, bool isMulti)
@@ -55,41 +57,14 @@ namespace BTApper
             this.isMulti = isMulti;
         }
 
-        public Weapon(int shots, int heat, int damage, bool isCluster, bool isMulti,bool isHeater)
+        public Weapon( int shots, int heat, int damage, bool isCluster, bool isMulti, String note)
         {
             this.maxShots = shots;
             this.heat = heat;
             this.damage = damage;
             this.isCluster = isCluster;
             this.isMulti = isMulti;
-            this.isHeater = isHeater;
-        }
-
-        public Weapon(String name, int shots, int heat, int damage, bool isCluster, bool isMulti, bool isHeater)
-        {
-            this.weaponName = name;
-            this.maxShots = shots;
-            this.heat = heat;
-            this.damage = damage;
-            this.isCluster = isCluster;
-            this.isMulti = isMulti;
-            this.isHeater = isHeater;
-        }
-        public Weapon(String name, int shots, int heat, int damage, bool isCluster, bool isMulti, bool isHeater, String note)
-        {
-            this.weaponName = name;
-            this.maxShots = shots;
-            this.heat = heat;
-            this.damage = damage;
-            this.isCluster = isCluster;
-            this.isMulti = isMulti;
-            this.isHeater = isHeater;
             this.note = note;
-        }
-
-        public String GetName()
-        {
-            return weaponName;
         }
 
         public int GetMaxShots()
@@ -97,19 +72,9 @@ namespace BTApper
             return maxShots;
         }
 
-        public void SetMaxShots(int n)
+        public int GetGrouping()
         {
-            this.maxShots = n;
-        }
-
-        public void IncrementShots()
-        {
-            this.maxShots++;
-        }
-
-        public void DecrementShots()
-        {
-            this.maxShots--;
+            return this.GetGrouping();
         }
 
         public int GetHeat()
@@ -117,39 +82,9 @@ namespace BTApper
             return this.heat;
         }
 
-        public void SetHeat(int n)
-        {
-            this.heat = n;
-        }
-
-        public void IncrementHeat()
-        {
-            this.heat++;
-        }
-
-        public void DecrementHeat()
-        {
-            this.heat--;
-        }
-
         public int GetDamage()
         {
             return this.damage;
-        }
-
-        public void SetDamage(int n)
-        { 
-            this.damage = n;
-        }
-
-        public void IncrementDamage()
-        {
-            this.damage++;
-        }
-
-        public void DecrementDamage()
-        {
-            this.damage--;
         }
 
         public bool GetCluster()
@@ -157,29 +92,9 @@ namespace BTApper
             return isCluster;
         }
 
-        public void SetCluster(bool b)
-        {
-            isCluster = b;
-        }
-
         public bool GetMulti()
         {
             return isMulti;
-        }
-
-        public void SetMulti(bool b)
-        {
-            isMulti = b;
-        }
-
-        public bool GetHeater()
-        {
-            return isHeater;
-        }
-
-        public void SetHeater(bool b)
-        {
-            isHeater = b;
         }
 
         public String GetNote()
@@ -187,9 +102,5 @@ namespace BTApper
             return note;
         }
 
-        public void SetNote(String s)
-        {
-            this.note = s;
-        }
     }
 }

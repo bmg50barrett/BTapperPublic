@@ -11,50 +11,73 @@
 
     <Grid>
         <StackPanel Style="{StaticResource WholeStacker}">
-            <StackPanel x:Name="LaserShapingPanel" VerticalAlignment="Top" HorizontalAlignment="Center">
-                <StackPanel x:Name="LaserControlPanel" VerticalAlignment="Center" HorizontalAlignment="Center">
-                    <TextBlock HorizontalAlignment="Center" Style="{StaticResource Title}">Missile</TextBlock>
+            <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center" Orientation="Horizontal">
+                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock HorizontalAlignment="Center" Style="{StaticResource Title}">I.S. Missile</TextBlock>
                     <NavigationViewItemSeparator/>
-                    <TextBlock Style="{StaticResource MinorText}">Basic</TextBlock>
+                    <TextBlock Style="{StaticResource MinorText}" Text="SRM"/>
                     <StackPanel Style="{StaticResource Lefted}">
-                        <RadioButton x:Name="smallLaserButton" GroupName="Class" Checked="smallLaserButton_Checked" >Small</RadioButton>
-                        <RadioButton x:Name="mediumLaserButton" GroupName="Class" Checked="mediumLaserButton_Checked" >Medium</RadioButton>
-                        <RadioButton x:Name="largeLaserButton" GroupName="Class" Checked="largeLaserButton_Checked" >Large</RadioButton>
+                        <RadioButton x:Name="ac2Button" GroupName="Class" Checked="ac2Button_Checked">AC/2</RadioButton>
+                        <RadioButton x:Name="ac5Button" GroupName="Class" Checked="ac5Button_Checked">AC/5</RadioButton>
+                        <RadioButton x:Name="ac10Button" GroupName="Class" Checked="ac10Button_Checked">AC/10</RadioButton>
+                        <RadioButton x:Name="ac20Button" GroupName="Class" Checked="ac20Button_Checked">AC/20</RadioButton>
                     </StackPanel>
-                    <TextBlock Style="{StaticResource MinorText}">Particle Projector</TextBlock>
+                    <TextBlock Style="{StaticResource MinorText}" Text="SSRM"/>
                     <StackPanel Style="{StaticResource Lefted}">
-                        <RadioButton x:Name="snubPPCButton" GroupName="Class" Checked="snubPPCButton_Checked">Snub PPC*</RadioButton>
-                        <RadioButton x:Name="lightPPCButton" GroupName="Class" Checked="lightPPCButton_Checked">Light PPC</RadioButton>
-                        <RadioButton x:Name="PPCButton" GroupName="Class" Checked="PPCButton_Checked">PPC</RadioButton>
-                        <RadioButton x:Name="heavyPPCButton" GroupName="Class" Checked="heavyPPCButton_Checked">Heavy PPC</RadioButton>
+                        <RadioButton x:Name="uac2Button" GroupName="Class" Checked="uac2Button_Checked">UAC/2</RadioButton>
+                        <RadioButton x:Name="uac5Button" GroupName="Class" Checked="uac5Button_Checked">UAC/5</RadioButton>
+                        <RadioButton x:Name="uac10Button" GroupName="Class" Checked="uac10Button_Checked">UAC/10</RadioButton>
+                        <RadioButton x:Name="uac20Button" GroupName="Class" Checked="uac20Button_Checked">UAC/20</RadioButton>
                     </StackPanel>
-                    <TextBlock Style="{StaticResource MinorText}">Extended Range</TextBlock>
+                    <TextBlock Style="{StaticResource MinorText}" Text="MRM"/>
                     <StackPanel Style="{StaticResource Lefted}">
-                        <RadioButton x:Name="erSmallButton" GroupName="Class" Checked="erSmallButton_Checked">ER Small</RadioButton>
-                        <RadioButton x:Name="erMedButton" GroupName="Class" Checked="erMedButton_Checked">ER Med</RadioButton>
-                        <RadioButton x:Name="erLargeButton" GroupName="Class" Content="ER Large" Checked="erLargeButton_Checked"/>
-                        <RadioButton x:Name="erPPCButton" GroupName="Class" Content="ER PPC" Checked="erPPCButton_Checked"/>
+                        <RadioButton x:Name="lightAC2Button" GroupName="Class" Content="Light AC/2"  Checked="lightAC2Button_Checked"/>
+                        <RadioButton x:Name="lightAC5Button" GroupName="Class" Content="Light AC/5"  Checked="lightAC5Button_Checked"/>
+                        <RadioButton x:Name="rotaryAC2Button" GroupName="Class" Content="Rotary AC/2" Checked="rotaryAC2Button_Checked"/>
+                        <RadioButton x:Name="rotaryAC5Button" GroupName="Class" Content="Rotary AC/5" Checked="rotaryAC5Button_Checked"/>
                     </StackPanel>
-                    <TextBlock Style="{StaticResource MinorText}">Pulse</TextBlock>
+                    <TextBlock Style="{StaticResource MinorText}" Text="LRM"/>
                     <StackPanel Style="{StaticResource Lefted}">
-                        <RadioButton x:Name="smallPulseButton" GroupName="Class" Checked="smallPulseButton_Checked">Small Pulse</RadioButton>
-                        <RadioButton x:Name="medPulseButton" GroupName="Class" Checked="medPulseButton_Checked">Med Pulse</RadioButton>
-                        <RadioButton x:Name="largePulseButton" GroupName="Class" Checked="largePulseButton_Checked">Large Pulse</RadioButton>
+                        <RadioButton x:Name="lb2Button" GroupName="Class" Checked="lb2Button_Checked" Content="LB 2-X AC"/>
+                        <RadioButton x:Name="lb5Button" GroupName="Class" Checked="lb5Button_Checked" Content="LB 5-X AC"/>
+                        <RadioButton x:Name="lb10Button" GroupName="Class" Checked="lb10Button_Checked" Content="LB 10-X AC"/>
+                        <RadioButton x:Name="lb20Button" GroupName="Class" Checked="lb20Button_Checked" Content="LB 20-X AC"/>
                     </StackPanel>
-                    <TextBlock Style="{StaticResource MinorText}">Heat</TextBlock>
+                    <TextBlock Style="{StaticResource MinorText}" Text="Rocket Launcher"/>
                     <StackPanel Style="{StaticResource Lefted}">
-                        <RadioButton x:Name="flamerButton" GroupName="Class" Checked="flamerButton_Checked" Content="Flamer*"/>
-                        <RadioButton x:Name="plasmaRifleButton" GroupName="Class" Checked="plasmaRifleButton_Checked" Content="Plasma Rifle*"/>
+                        <RadioButton x:Name="lightGaussButton" GroupName="Class" Content="L. Gauss Rifle" Checked="lightGaussButton_Checked"/>
+                        <RadioButton x:Name="GaussButton" GroupName="Class" Content="Gauss Rifle" Checked="GaussButton_Checked"/>
+                        <RadioButton x:Name="heavyGaussButton" GroupName="Class" Content="H. Gauss Rifle*" Checked="heavyGaussButton_Checked"/>
+                    </StackPanel>
+                    <TextBlock Style="{StaticResource MinorText}" Text="Other"/>
+                    <StackPanel Style="{StaticResource Lefted}">
+                        <RadioButton x:Name="lgun" GroupName="Class" Checked="lgun_Checked" Content="LMG"/>
+                        <RadioButton x:Name="gun" GroupName="Class" Checked="gun_Checked" Content="MG"/>
+                        <RadioButton x:Name="hgun" GroupName="Class" Checked="hgun_Checked" Content="HMG"/>
+                        <RadioButton x:Name="ngun" GroupName="Class" Checked="ngun_Checked" Content="Nailgun*"/>
+                    </StackPanel>
+                    <NavigationViewItemSeparator/>
+                    <TextBlock Style="{StaticResource MinorText}">Number of Shots</TextBlock>
+                    <StackPanel x:Name="ShotPicker" Orientation="Horizontal">
+                        <ToggleButton x:Name="ShotOne" Content="1" Style="{StaticResource ShotButton}" Checked="ShotOne_Checked"/>
+                        <ToggleButton x:Name="ShotTwo" Style="{StaticResource ShotButton}" Checked="ShotTwo_Checked">2</ToggleButton>
+                        <ToggleButton x:Name="ShotThree" Style="{StaticResource ShotButton}" Checked="ShotThree_Checked">3</ToggleButton>
+                        <ToggleButton x:Name="ShotFour" Style="{StaticResource ShotButton}" Checked="ShotFour_Checked">4</ToggleButton>
+                        <ToggleButton x:Name="ShotFive" Style="{StaticResource ShotButton}" Checked="ShotFive_Checked">5</ToggleButton>
+                        <ToggleButton x:Name="ShotSix" Style="{StaticResource ShotButton}" Checked="ShotSix_Checked">6</ToggleButton>
                     </StackPanel>
                     <NavigationViewItemSeparator/>
                     <StackPanel Style="{StaticResource Centered}">
                         <Image Source="/Assets/explosion.png" Style="{StaticResource NumberIcons}"/>
-                        <TextBlock x:Name="EnergyDamage" Text="Damage" Style="{StaticResource StatText}"></TextBlock>
-                        <TextBlock x:Name="EnergyHeat" Text="Heat" Style="{StaticResource StatText}"></TextBlock>
+                        <TextBlock x:Name="MissileDamage" Text="--" Style="{StaticResource StatText}"></TextBlock>
                         <Image Source="/Assets/heat.png" Style="{StaticResource NumberIcons}"/>
+                        <TextBlock x:Name="MissileHeat" Text="--" Style="{StaticResource StatText}"></TextBlock>
+                        <Image Source="/Assets/shots.png" Style="{StaticResource NumberIcons}"/>
+                        <TextBlock x:Name="MissileShots" Text="--" Style="{StaticResource StatText}"></TextBlock>
+                        <TextBlock x:Name="multiX" Style="{StaticResource MultiX}"></TextBlock>
                     </StackPanel>
                     <NavigationViewItemSeparator/>
-                    <TextBlock Style="{StaticResource MinorText}">Facing</TextBlock>
+
                     <StackPanel Style="{StaticResource Lefted}">
                         <RadioButton x:Name="frontFaceButton" GroupName="Face" Checked="frontFaceButton_Checked">Front</RadioButton>
                         <RadioButton x:Name="rightFaceButton" GroupName="Face" Checked="rightFaceButton_Checked">Right Side</RadioButton>
@@ -63,16 +86,17 @@
                     </StackPanel>
                     <NavigationViewItemSeparator/>
                     <StackPanel Style="{StaticResource Centered}" Spacing="40">
-                        <TextBlock x:Name="energyDice1block" Text="--" Height="32" FontSize="20" FontFamily="Steiner"/>
-                        <Button x:Name="EnergyRoll" Content="Roll" Click="EnergyRoll_Click" Width="100" Height="50" Margin="0,20,0,20" FontFamily="Steiner" FontSize="20"/>
-                        <TextBlock x:Name="energyDice2block" Text="--" Height="32" FontSize="20" FontFamily="Steiner"/>
+                        <TextBlock x:Name="missileDice1block" Text="--" Height="32" FontSize="20" FontFamily="Steiner"/>
+                        <Button x:Name="MissileRoll" Content="Roll" Click="MissileRoll_Click" Width="100" Height="50" Margin="0,20,0,20" FontFamily="Steiner" FontSize="20"/>
+                        <TextBlock x:Name="missileDice2block" Text="--" Height="32" FontSize="20" FontFamily="Steiner"/>
                     </StackPanel>
                     <NavigationViewItemSeparator/>
                 </StackPanel>
+
             </StackPanel>
             <StackPanel HorizontalAlignment="Left">
                 <StackPanel Style="{StaticResource Lefted}">
-                    <TextBox x:Name="EnergyTextBox" Style="{StaticResource RollerTextBox}"/>
+                    <TextBox x:Name="MissileTextBox" Style="{StaticResource RollerTextBox}"/>
                 </StackPanel>
                 <TextBlock x:Name="SpecialNotes" Style="{StaticResource SpecialNotes}"/>
             </StackPanel>

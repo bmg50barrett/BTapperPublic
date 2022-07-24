@@ -13,7 +13,7 @@
         <StackPanel Style="{StaticResource WholeStacker}">
             <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center" Orientation="Horizontal">
                 <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-                    <TextBlock HorizontalAlignment="Center" Style="{StaticResource Title}">Ballistic</TextBlock>
+                    <TextBlock HorizontalAlignment="Center" Style="{StaticResource Title}">I.S. Ballistic</TextBlock>
                     <NavigationViewItemSeparator/>
                     <TextBlock Style="{StaticResource MinorText}">Autocannon</TextBlock>
                     <StackPanel Style="{StaticResource Lefted}">

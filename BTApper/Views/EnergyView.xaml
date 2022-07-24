@@ -13,7 +13,7 @@
         <StackPanel  Style="{StaticResource WholeStacker}">
             <StackPanel x:Name="LaserShapingPanel" VerticalAlignment="Top" HorizontalAlignment="Center">
             <StackPanel x:Name="LaserControlPanel" VerticalAlignment="Center" HorizontalAlignment="Center">
-                <TextBlock HorizontalAlignment="Center" Style="{StaticResource Title}">Energy</TextBlock>
+                    <TextBlock HorizontalAlignment="Center" Style="{StaticResource Title}">I.S. Energy</TextBlock>
                 <NavigationViewItemSeparator/>
                 <TextBlock Style="{StaticResource MinorText}">Basic</TextBlock>
                 <StackPanel Style="{StaticResource Lefted}">

@@ -32,12 +32,12 @@ namespace BTApper.Views
         static Weapon extra = new Weapon(0,0,0);
 
         //Basic
-        static Weapon smallLaser = new Weapon("Small Laser", 1, 1, 1);
-        static Weapon mediumLaser = new Weapon("Medium Laser", 1, 3, 5);
-        static Weapon largeLaser = new Weapon("Large Laser", 1, 8, 8);
+        static Weapon smallLaser = new Weapon( 1, 1, 1);
+        static Weapon mediumLaser = new Weapon( 1, 3, 5);
+        static Weapon largeLaser = new Weapon( 1, 8, 8);
 
         //Particle Projector
-        static Weapon snubPPC = new Weapon("Snub-Nose PPC", 1, 10, 10, false, false, false, "* Snub-Nose PPCs deal 10/8/5 damage at Short/Med/Long Range."); //damage changes based on range
+        static Weapon snubPPC = new Weapon( 1, 10, 10, false, false, "* Snub-Nose PPCs deal 10/8/5 damage at Short/Med/Long Range."); //damage changes based on range
         static Weapon lightPPC = new Weapon(1, 5, 5);
         static Weapon PPC = new Weapon(1, 10, 10);
         static Weapon heavyPPC = new Weapon(1, 15, 15);
@@ -54,8 +54,8 @@ namespace BTApper.Views
         static Weapon pulseLargeLaser = new Weapon(1, 10, 9);
 
         //Heat
-        static Weapon flamer = new Weapon("Flamer", 1, 3, 2, false, false, true, "* This weapon either does damage OR raises heat.");
-        static Weapon plasmaRifle = new Weapon("Plasma Rifle", 1, 10, 10, false, false, true, "* This weapon causes the target to generate 1D6 heat.");
+        static Weapon flamer = new Weapon( 1, 3, 2, false, false, "* This weapon either does damage OR raises heat.");
+        static Weapon plasmaRifle = new Weapon( 1, 10, 10, false, false, "* This weapon causes the target to generate 1D6 heat.");
 
         //Array of Weapon Objects stores data about weapons in same order as EnergyView
         Weapon[,] weaponArray = new Weapon[5, 4] { { smallLaser, mediumLaser, largeLaser, extra }, { snubPPC, lightPPC, PPC, heavyPPC }, { erSmallLaser, erMediumLaser, erLargeLaser, erPPC }, { pulseSmallLaser, pulseMediumLaser, pulseLargeLaser, extra }, { flamer, plasmaRifle, extra, extra } };
@@ -113,9 +113,11 @@ namespace BTApper.Views
             {
                 heatDice.RollDice();
                 UpdateEnergyScreen("You hit " + facingArray[sum - 1, facingID] + " for " + EnergyDamage.Text + " damage and " + heatDice.GetValue() + " heat!");
+                
             } else
             {
                 UpdateEnergyScreen("You hit " + facingArray[sum - 1, facingID] + " for " + EnergyDamage.Text + " damage !");
+                
             }
             
         }

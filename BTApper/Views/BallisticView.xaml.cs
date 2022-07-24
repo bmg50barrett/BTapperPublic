@@ -19,9 +19,8 @@ namespace BTApper.Views
     public sealed partial class BallisticView : Page
     {
         //Create Dice Objects
-        Dice de1 = new Dice();
-        Dice de2 = new Dice();
-        Dice heatDice = new Dice();
+        Dice dice1 = new Dice();
+        Dice dice2 = new Dice();
 
         //Create facingID variable.
         private int facingID = 0;
@@ -65,13 +64,13 @@ namespace BTApper.Views
         //Gauss
         static Weapon lGauss = new Weapon(1, 1, 8);
         static Weapon Gauss = new Weapon(1, 1, 15);
-        static Weapon hGauss = new Weapon("Heavy Gauss", 1, 2, 25, false, false, false,"*Weapons does 25/20/10 damage at Short/Medium/Long range.");
+        static Weapon hGauss = new Weapon( 1, 2, 25, false, false,"*Weapons does 25/20/10 damage at Short/Medium/Long range.");
 
         //Other
-        static Weapon lGun = new Weapon(1, 0, 1);
-        static Weapon mGun = new Weapon(1, 0, 2);
-        static Weapon hGun = new Weapon(1, 0, 3);
-        static Weapon nailGun = new Weapon("Nailgun",1, 0, 0, false, false, false, "*Weapon does no damage to armor.");
+        static Weapon lGun = new Weapon( 1, 0, 1);
+        static Weapon mGun = new Weapon( 1, 0, 2);
+        static Weapon hGun = new Weapon( 1, 0, 3);
+        static Weapon nailGun = new Weapon( 1, 0, 0, false, false, "*Weapon does no damage to armor.");
 
         //Array of Weapon Objects stores data about weapons in same order as BallisticView
         Weapon[,] weaponArray = new Weapon[6, 4] {
@@ -104,7 +103,7 @@ namespace BTApper.Views
             frontFaceButton.IsChecked = true;
             ac2Button.IsChecked = true;
             ShotOne.IsChecked = true;
-            BallisticRoll2d6(de1, de2);
+            BallisticRoll2d6(dice1, dice2);
         }
         private void UpdateBallisticScreen(String s)
         {
@@ -119,18 +118,18 @@ namespace BTApper.Views
             return str;
         }
 
-        private void BallisticRoll2d6(Dice de1, Dice de2)
+        private void BallisticRoll2d6(Dice dice1, Dice dice2)
         {
-            de1.RollDice();
-            de2.RollDice();
-            ballisticDice1block.Text = de1.GetValue().ToString();
-            ballisticDice2block.Text = de2.GetValue().ToString();
+            dice1.RollDice();
+            dice2.RollDice();
+            ballisticDice1block.Text = dice1.GetValue().ToString();
+            ballisticDice2block.Text = dice2.GetValue().ToString();
         }
 
         private void BallisticRoll_Click(object sender, RoutedEventArgs e)
         {
-            BallisticRoll2d6(de1, de2);
-            int sum = de1.GetValue() + de2.GetValue();
+            BallisticRoll2d6(dice1, dice2);
+            int sum = dice1.GetValue() + dice2.GetValue();
 
             if (clusterRoll == true && multishotRoll == true && Int16.Parse(BallisticShots.Text) > 1)
             {
