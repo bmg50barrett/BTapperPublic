@@ -65,7 +65,8 @@
                     <RadioButton x:Name="rearFaceButton" GroupName="Face" Checked="rearFaceButton_Checked">Rear</RadioButton>
                 </StackPanel>
                 <NavigationViewItemSeparator/>
-                <StackPanel Style="{StaticResource Centered}" Spacing="40">
+                    <TextBlock Style="{StaticResource MinorText}" FontFamily="Steiner" FontSize="20" TextDecorations="None" HorizontalAlignment="Center" Text="Roll Hit Locations"/>
+                    <StackPanel Style="{StaticResource Centered}" Spacing="40">
                     <TextBlock x:Name="energyDice1block" Text="--"  Style="{StaticResource RollResultText}"/>
                     <Button x:Name="EnergyRoll" Content="Roll" Click="EnergyRoll_Click"  Style="{StaticResource RollButton}"/>
                     <TextBlock x:Name="energyDice2block" Text="--"  Style="{StaticResource RollResultText}"/>

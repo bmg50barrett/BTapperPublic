@@ -147,12 +147,20 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\1die.png" />
+    <Content Include="Assets\2die.png" />
+    <Content Include="Assets\3die.png" />
+    <Content Include="Assets\4die.png" />
+    <Content Include="Assets\5die.png" />
+    <Content Include="Assets\6die.png" />
     <Content Include="Assets\BadgeLogo.scale-100.png" />
     <Content Include="Assets\BadgeLogo.scale-125.png" />
     <Content Include="Assets\BadgeLogo.scale-150.png" />
     <Content Include="Assets\BadgeLogo.scale-200.png" />
     <Content Include="Assets\BadgeLogo.scale-400.png" />
+    <Content Include="Assets\cluster.png" />
     <Content Include="Assets\explosion.png" />
+    <Content Include="Assets\missile.png" />
     <Content Include="Assets\shots.png" />
     <Content Include="Assets\heat.png" />
     <Content Include="Assets\LargeTile.scale-100.png" />

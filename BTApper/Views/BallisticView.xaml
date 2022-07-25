@@ -85,6 +85,7 @@
                         <RadioButton x:Name="rearFaceButton" GroupName="Face" Checked="rearFaceButton_Checked">Rear</RadioButton>
                     </StackPanel>
                     <NavigationViewItemSeparator/>
+                    <TextBlock Style="{StaticResource MinorText}" FontFamily="Steiner" FontSize="20" TextDecorations="None" HorizontalAlignment="Center" Text="Roll Hit Locations"/>
                     <StackPanel Style="{StaticResource Centered}" Spacing="40">
                         <TextBlock x:Name="ballisticDice1block" Text="--" Height="32" FontSize="20" FontFamily="Steiner"/>
                         <Button x:Name="BallisticRoll" Content="Roll" Click="BallisticRoll_Click" Width="100" Height="50" Margin="0,20,0,20" FontFamily="Steiner" FontSize="20"/>

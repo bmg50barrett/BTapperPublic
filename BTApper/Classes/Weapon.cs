@@ -15,28 +15,44 @@ namespace BTApper
         private bool isCluster = false;
         private bool isMulti = false;
         private String note = "";
-        private int mmlSRMshotGrouping = 1;
-        private int mmlLRMshotGrouping = 1;
-        private int mmlSRMdmg = 1;
-        private int mmlLRMdmg = 2;
 
-        public Weapon(int s, int sg, int h, int d)
+        private bool isMML = false;
+        private int mmlSRMShotsPerGroup = 0;
+        private int mmlLRMShotsPerGroup = 0;
+        private int mmlSRMdmg = 0;
+        private int mmlLRMdmg = 0;
+
+        public Weapon() { }
+
+        public Weapon(int maxShots, int shotGroupSize, int heat, int damage)
         {
-            this.maxShots = s;
-            this.shotGrouping = sg;
-            this.heat = h;
-            this.damage = d;
+            this.maxShots = maxShots;
+            this.shotGrouping = shotGroupSize;
+            this.heat = heat;
+            this.damage = damage;
         }
 
         //Used my MML
-        public Weapon(int s, int srmGrouping, int lrmGrouping, int h, int srmdmg, int lrmdmg)
+        /// <summary>
+        /// This method builds a MML weapon.
+        /// </summary>
+        /// <param name="isMML">Boolean flag to determine if object is a MML.</param>
+        /// <param name="maxShots">Number of missiles fired from the weapon in one shot.</param>
+        /// <param name="srmGrouping">Grouping size if SRM missiles are used.</param>
+        /// <param name="lrmGrouping">Grouping size if LRM missiles are used.</param>
+        /// <param name="heat">Amount of heat generated from one round of firing.</param>
+        /// <param name="srmdmg">Damage of SRM missiles, per missile.</param>
+        /// <param name="lrmdmg">Damage of LRM missiles, per missile.</param>
+        public Weapon(bool isMML, int maxShots, int srmGrouping, int lrmGrouping, int heat, int srmdmg, int lrmdmg)
         {
-            this.maxShots = s;
-            this.mmlSRMshotGrouping = srmGrouping;
-            this.mmlLRMshotGrouping = lrmGrouping;
-            this.heat = h;
+            this.isMML = isMML;
+            this.maxShots = maxShots;
+            this.mmlSRMShotsPerGroup = srmGrouping;
+            this.mmlLRMShotsPerGroup = lrmGrouping;
+            this.heat = heat;
             this.mmlSRMdmg = srmdmg;
             this.mmlLRMdmg = lrmdmg;
+
         }
 
         public Weapon (int shots, int heat, int damage)
@@ -69,12 +85,12 @@ namespace BTApper
 
         public int GetMaxShots()
         {
-            return maxShots;
+            return this.maxShots;
         }
 
         public int GetGrouping()
         {
-            return this.GetGrouping();
+            return this.shotGrouping;
         }
 
         public int GetHeat()
@@ -89,18 +105,42 @@ namespace BTApper
 
         public bool GetCluster()
         {
-            return isCluster;
+            return this.isCluster;
         }
 
         public bool GetMulti()
         {
-            return isMulti;
+            return this.isMulti;
         }
 
         public String GetNote()
         {
-            return note;
+            return this.note;
         }
 
+        public bool GetMML()
+        {
+            return this.isMML;
+        }
+
+        public int GetMMLSRMShotsPerGroup()
+        {
+            return this.mmlSRMShotsPerGroup;
+        }
+
+        public int GetMMLLRMShotsPerGroup()
+        {
+            return this.mmlLRMShotsPerGroup;
+        }
+
+        public int GetMMLSRMdmg()
+        {
+            return this.mmlSRMdmg;
+        }
+
+        public int GetMMLLRMdmg()
+        {
+            return this.mmlLRMdmg;
+        }
     }
 }

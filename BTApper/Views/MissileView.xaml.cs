@@ -11,6 +11,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
 namespace BTApper.Views
@@ -18,9 +19,14 @@ namespace BTApper.Views
 
     public sealed partial class MissileView : Page
     {
-        //Create Dice Objects
+        //Create Cluster Hit Dice Objects
         Dice dice1 = new Dice();
         Dice dice2 = new Dice();
+
+        //Create hit location dice
+        Dice locationDice1 = new Dice();
+        Dice locationDice2 = new Dice();
+        private int locationResult = 7;
 
         //Create facingID variable.
         private int facingID = 0;
@@ -28,9 +34,8 @@ namespace BTApper.Views
         //Create ClusterHitsTable object
         private ClusterHits MissileClusterHits = new ClusterHits();
 
-        //Create flag variables.
-        private bool clusterRoll = false;
-        private bool multishotRoll = false;
+        //Create Active Weapon storage
+        static Weapon activeWeapon = new Weapon();
 
         //Create Weapon objects
         //Weapon object (Name, shots, heat, damage, cluster?, multishot?, notes)
@@ -64,11 +69,11 @@ namespace BTApper.Views
         static Weapon rl15 = new Weapon(15, 4, 1);
         static Weapon rl20 = new Weapon(20, 5, 1);
 
-        //Other
-        static Weapon mml3 = new Weapon(0, 0, 0);
-        static Weapon mml5 = new Weapon(0, 0, 0);
-        static Weapon mml7 = new Weapon(0, 0, 0);
-        static Weapon mml9 = new Weapon(0, 0, 0);
+        //MML
+        static Weapon mml3 = new Weapon(true, 3, 2, 3, 2, 2, 1);
+        static Weapon mml5 = new Weapon(true, 5, 2, 5, 3, 2, 1);
+        static Weapon mml7 = new Weapon(true, 7, 2, 5, 4, 2, 1);
+        static Weapon mml9 = new Weapon(true, 9, 2, 5, 5, 2, 1);
 
         //Array of Weapon Objects stores data about weapons in same order as MissileView
         Weapon[,] weaponArray = new Weapon[6, 4] {
@@ -99,15 +104,16 @@ namespace BTApper.Views
             this.InitializeComponent();
             this.NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Required;
             frontFaceButton.IsChecked = true;
-            ac2Button.IsChecked = true;
-            ShotOne.IsChecked = true;
+            srm2Button.IsChecked = true;
+            ammoSwitchMML.IsOn = false;
             MissileRoll2d6(dice1, dice2);
+            
         }
 
-        private void UpdateMissileScreen(String s)
+        private void UpdateMissileScreen(String stringInput)
         {
             //Single Element implemenation of text box.
-            MissileTextBox.Text = Prepender(MissileTextBox.Text, s);
+            MissileTextBox.Text = Prepender(MissileTextBox.Text, stringInput);
         }
 
         private string Prepender(string str, string prepend)
@@ -119,200 +125,239 @@ namespace BTApper.Views
 
         private void MissileRoll2d6(Dice dice1, Dice dice2)
         {
+            String filename;
             dice1.RollDice();
             dice2.RollDice();
-            missileDice1block.Text = dice1.GetValue().ToString();
-            missileDice2block.Text = dice2.GetValue().ToString();
+            filename = "/Assets/" + dice1.GetValue().ToString() + "die.png";
+            Dice1.Source = new BitmapImage(new Uri(base.BaseUri, @filename));
+            filename = "/Assets/" + dice2.GetValue().ToString() + "die.png";
+            Dice2.Source = new BitmapImage(new Uri(base.BaseUri, @filename));
+        }
+
+        private void MissileRollCluster2d6(Dice dice1, Dice dice2)
+        {
+            dice1.RollDice();
+            dice2.RollDice();
         }
 
         private void MissileRoll_Click(object sender, RoutedEventArgs e)
         {
+
+            //ROLL FOR CLUSTER HIT TABLE RESULT.
             MissileRoll2d6(dice1, dice2);
             int sum = dice1.GetValue() + dice2.GetValue();
+            int amountRoll = MissileClusterHits.GetClusterHits(sum, activeWeapon.GetMaxShots());
 
-            if (clusterRoll == true && multishotRoll == true && Int16.Parse(MissileShots.Text) > 1)
+            //FIGURE OUT CLUSTER SHOT SIZING.
+            //====================================================================
+
+            //Get group sizing.
+            int groupSize;
+            int groupMissileDamage;
+
+            if (activeWeapon.GetMML() == true)
             {
-                UpdateMissileScreen("==========");
-                int amountRoll = MissileClusterHits.GetClusterHits(sum, Int16.Parse(MissileShots.Text));
-                UpdateMissileScreen("Multi Shot Cluster Weapon! Hits: " + amountRoll + " out of " + MissileShots.Text + "!");
-                for (int i = 1; i <= amountRoll; i++)
+                if (ammoSwitchMML.IsOn == true)
                 {
-                    UpdateMissileScreen("Hit #" + i + "! You hit " + facingArray[sum - 1, facingID] + " for " + MissileDamage.Text + " damage!");
+                    groupSize = activeWeapon.GetMMLLRMShotsPerGroup();
+                    groupMissileDamage = activeWeapon.GetMMLLRMdmg();
                 }
-
-
-            }
-            else if (clusterRoll == true && multishotRoll == true && Int16.Parse(MissileShots.Text) == 1)
-            {
-                UpdateMissileScreen("==========");
-                UpdateMissileScreen("You hit " + facingArray[sum - 1, facingID] + " for " + MissileDamage.Text + " damage!");
-
-
-            }
-            else if (clusterRoll == true && Int16.Parse(MissileShots.Text) == 1)
-            {
-                int amountRoll = MissileClusterHits.GetClusterHits(sum, Int16.Parse(MissileDamage.Text));
-                UpdateMissileScreen("==========");
-                UpdateMissileScreen("Single Shot Cluster Weapon! Hits: " + amountRoll + "!");
-
-
+                else
+                {
+                    groupSize = activeWeapon.GetMMLSRMShotsPerGroup();
+                    groupMissileDamage = activeWeapon.GetMMLSRMdmg();
+                }
             }
             else
             {
-                UpdateMissileScreen("==========");
-                UpdateMissileScreen("You hit " + facingArray[sum - 1, facingID] + " for " + MissileDamage.Text + " damage!");
-
-
+                groupSize = activeWeapon.GetGrouping();
+                groupMissileDamage = activeWeapon.GetDamage();
             }
+             
+            //Number of whole groups
+            int groupNumber = amountRoll / groupSize;
+                        
+            //Remainder after groups
+            int finalGroup = amountRoll % groupSize;
+
+            //====================================================================
+
+
+            UpdateMissileScreen("==========");
+            UpdateMissileScreen("Hit " + amountRoll + " missiles out of a possible " + activeWeapon.GetMaxShots() + "!");
+
+            int groupIndex;
+            for (groupIndex = 1; groupIndex <= (groupNumber); groupIndex++)
+            {
+                locationDice1.RollDice();
+                locationDice2.RollDice();
+                locationResult = locationDice1.GetValue() + locationDice2.GetValue();
+                UpdateMissileScreen("Group #" + groupIndex + "  --  " + groupSize + " missiles hit " + facingArray[locationResult - 1, facingID] + " for " + (groupMissileDamage*groupSize) + " damage!");
+            }
+
+            //Print out final group damage result.
+            if (finalGroup != 0)
+            {
+                locationDice1.RollDice();
+                locationDice2.RollDice();
+                locationResult = locationDice1.GetValue() + locationDice2.GetValue();
+                UpdateMissileScreen("Group #" + groupIndex + "  --  " + finalGroup + " missiles hit " + facingArray[locationResult - 1, facingID] + " for " + (groupMissileDamage * finalGroup) + " damage!");
+            }
+            
 
         }
 
         //Reduces repeated code in button actions. Every button does the same four methods.
         private void ButtonInternalUpdate(int first, int second)
         {
-            MissileDamage.Text = weaponArray[first, second].GetDamage().ToString();
-            MissileHeat.Text = weaponArray[first, second].GetHeat().ToString();
-            SpecialNotes.Text = weaponArray[first, second].GetNote();
-            clusterRoll = weaponArray[first, second].GetCluster();
-            multishotRoll = weaponArray[first, second].GetMulti();
-            foreach (ToggleButton item in ShotPicker.Children)
+            activeWeapon = weaponArray[first, second];
+            if (activeWeapon.GetMML() == true)
             {
-
-                if (Int16.Parse(item.Content.ToString()) <= weaponArray[first, second].GetMaxShots())
+                if (ammoSwitchMML.IsOn == true)
                 {
-
-                    item.IsEnabled = true;
-
-                }
-                else
+                    MissileDamage.Text = activeWeapon.GetMMLLRMdmg().ToString();
+                } else if (ammoSwitchMML.IsOn == false)
                 {
-
-                    if (item.IsChecked == true)
-                    {
-
-                        ShotOne.IsChecked = true;
-
-                    }
-
-                    item.IsEnabled = false;
-
+                    MissileDamage.Text = activeWeapon.GetMMLSRMdmg().ToString();
                 }
+            } else
+            {
+                MissileDamage.Text = activeWeapon.GetDamage().ToString();
             }
+            
+            MissileHeat.Text = activeWeapon.GetHeat().ToString();
+            MissileShots.Text = activeWeapon.GetMaxShots().ToString();
+            SpecialNotes.Text = activeWeapon.GetNote();
+
         }
 
         //Weapon Button Actions
-        private void ac2Button_Checked(object sender, RoutedEventArgs e)
+        private void srm2Button_Checked(object sender, RoutedEventArgs e)
         {
             ButtonInternalUpdate(0, 0);
         }
 
-        private void ac5Button_Checked(object sender, RoutedEventArgs e)
+        private void srm4Button_Checked(object sender, RoutedEventArgs e)
         {
             ButtonInternalUpdate(0, 1);
         }
 
-        private void ac10Button_Checked(object sender, RoutedEventArgs e)
+        private void srm6Button_Checked(object sender, RoutedEventArgs e)
         {
             ButtonInternalUpdate(0, 2);
         }
 
-        private void ac20Button_Checked(object sender, RoutedEventArgs e)
-        {
-            ButtonInternalUpdate(0, 3);
-        }
-
-        private void uac2Button_Checked(object sender, RoutedEventArgs e)
+        private void ssrm2Button_Checked(object sender, RoutedEventArgs e)
         {
             ButtonInternalUpdate(1, 0);
         }
 
-        private void uac5Button_Checked(object sender, RoutedEventArgs e)
+        private void ssrm4Button_Checked(object sender, RoutedEventArgs e)
         {
             ButtonInternalUpdate(1, 1);
         }
 
-        private void uac10Button_Checked(object sender, RoutedEventArgs e)
+        private void ssrm6Button_Checked(object sender, RoutedEventArgs e)
         {
             ButtonInternalUpdate(1, 2);
         }
-
-        private void uac20Button_Checked(object sender, RoutedEventArgs e)
-        {
-            ButtonInternalUpdate(1, 3);
-        }
-
-        private void lightAC2Button_Checked(object sender, RoutedEventArgs e)
+       
+        private void MRM10Button_Checked(object sender, RoutedEventArgs e)
         {
             ButtonInternalUpdate(2, 0);
         }
 
-        private void lightAC5Button_Checked(object sender, RoutedEventArgs e)
+        private void MRM20Button_Checked(object sender, RoutedEventArgs e)
         {
             ButtonInternalUpdate(2, 1);
         }
 
-        private void rotaryAC2Button_Checked(object sender, RoutedEventArgs e)
+        private void MRM30Button_Checked(object sender, RoutedEventArgs e)
         {
             ButtonInternalUpdate(2, 2);
         }
 
-        private void rotaryAC5Button_Checked(object sender, RoutedEventArgs e)
+        private void MRM40Button_Checked(object sender, RoutedEventArgs e)
         {
             ButtonInternalUpdate(2, 3);
         }
-        private void lb2Button_Checked(object sender, RoutedEventArgs e)
+
+        private void lrm5Button_Checked(object sender, RoutedEventArgs e)
         {
             ButtonInternalUpdate(3, 0);
         }
 
-        private void lb5Button_Checked(object sender, RoutedEventArgs e)
+        private void lrm10Button_Checked(object sender, RoutedEventArgs e)
         {
             ButtonInternalUpdate(3, 1);
         }
 
-        private void lb10Button_Checked(object sender, RoutedEventArgs e)
+        private void lrm15Button_Checked(object sender, RoutedEventArgs e)
         {
             ButtonInternalUpdate(3, 2);
         }
 
-        private void lb20Button_Checked(object sender, RoutedEventArgs e)
+        private void lrm20Button_Checked(object sender, RoutedEventArgs e)
         {
             ButtonInternalUpdate(3, 3);
         }
 
-        private void lightGaussButton_Checked(object sender, RoutedEventArgs e)
+        private void RL10Button_Checked(object sender, RoutedEventArgs e)
         {
             ButtonInternalUpdate(4, 0);
         }
 
-        private void GaussButton_Checked(object sender, RoutedEventArgs e)
+        private void RL15Button_Checked(object sender, RoutedEventArgs e)
         {
             ButtonInternalUpdate(4, 1);
         }
 
-        private void heavyGaussButton_Checked(object sender, RoutedEventArgs e)
+        private void RL20Button_Checked(object sender, RoutedEventArgs e)
         {
             ButtonInternalUpdate(4, 2);
         }
-
-        private void lgun_Checked(object sender, RoutedEventArgs e)
+        private void MML3Button_Checked(object sender, RoutedEventArgs e)
         {
             ButtonInternalUpdate(5, 0);
         }
 
-        private void gun_Checked(object sender, RoutedEventArgs e)
+        private void MML5Button_Checked(object sender, RoutedEventArgs e)
         {
             ButtonInternalUpdate(5, 1);
         }
 
-        private void hgun_Checked(object sender, RoutedEventArgs e)
+        private void MML7Button_Checked(object sender, RoutedEventArgs e)
         {
             ButtonInternalUpdate(5, 2);
         }
 
-        private void ngun_Checked(object sender, RoutedEventArgs e)
+        private void MML9Button_Checked(object sender, RoutedEventArgs e)
         {
             ButtonInternalUpdate(5, 3);
+        }
+
+        //MML Ammo Type Toggle Switch
+        private void ammoSwitchMML_Toggled(object sender, RoutedEventArgs e)
+        {
+            if (MML3Button?.IsChecked == true || MML5Button?.IsChecked == true || MML7Button?.IsChecked == true || MML9Button?.IsChecked == true)
+            {
+                if (MML3Button.IsChecked == true)
+                {
+                    ButtonInternalUpdate(5, 0);
+                }
+                else if (MML5Button.IsChecked == true)
+                {
+                    ButtonInternalUpdate(5, 1);
+                }
+                else if (MML7Button.IsChecked == true)
+                {
+                    ButtonInternalUpdate(5, 2);
+                }
+                else
+                {
+                    ButtonInternalUpdate(5, 3);
+                }
+            }
         }
 
         //Facing Button Actions
@@ -337,65 +382,5 @@ namespace BTApper.Views
             facingID = 0;
         }
 
-        private void ShotOne_Checked(object sender, RoutedEventArgs e)
-        {
-            ShotTwo.IsChecked = false;
-            ShotThree.IsChecked = false;
-            ShotFour.IsChecked = false;
-            ShotFive.IsChecked = false;
-            ShotSix.IsChecked = false;
-            MissileShots.Text = "1";
-        }
-
-        private void ShotTwo_Checked(object sender, RoutedEventArgs e)
-        {
-            ShotOne.IsChecked = false;
-            ShotThree.IsChecked = false;
-            ShotFour.IsChecked = false;
-            ShotFive.IsChecked = false;
-            ShotSix.IsChecked = false;
-            MissileShots.Text = "2";
-        }
-
-        private void ShotThree_Checked(object sender, RoutedEventArgs e)
-        {
-            ShotOne.IsChecked = false;
-            ShotTwo.IsChecked = false;
-            ShotFour.IsChecked = false;
-            ShotFive.IsChecked = false;
-            ShotSix.IsChecked = false;
-            MissileShots.Text = "3";
-        }
-
-        private void ShotFour_Checked(object sender, RoutedEventArgs e)
-        {
-            ShotOne.IsChecked = false;
-            ShotTwo.IsChecked = false;
-            ShotThree.IsChecked = false;
-            ShotFive.IsChecked = false;
-            ShotSix.IsChecked = false;
-            MissileShots.Text = "4";
-
-        }
-
-        private void ShotFive_Checked(object sender, RoutedEventArgs e)
-        {
-            ShotOne.IsChecked = false;
-            ShotTwo.IsChecked = false;
-            ShotThree.IsChecked = false;
-            ShotFour.IsChecked = false;
-            ShotSix.IsChecked = false;
-            MissileShots.Text = "5";
-        }
-
-        private void ShotSix_Checked(object sender, RoutedEventArgs e)
-        {
-            ShotOne.IsChecked = false;
-            ShotTwo.IsChecked = false;
-            ShotThree.IsChecked = false;
-            ShotFour.IsChecked = false;
-            ShotFive.IsChecked = false;
-            MissileShots.Text = "6";
-        }
     }
 }
