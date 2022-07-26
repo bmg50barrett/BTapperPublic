@@ -11,7 +11,7 @@
 
     <Grid>
         <StackPanel Style="{StaticResource WholeStacker}">
-            <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center" Orientation="Horizontal">
+            <StackPanel Style="{StaticResource LeftPanel}">
                 <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
                     <TextBlock HorizontalAlignment="Center" Style="{StaticResource Title}">I.S. Ballistic</TextBlock>
                     <NavigationViewItemSeparator/>
@@ -38,6 +38,7 @@
                     </StackPanel>
                     <TextBlock Style="{StaticResource MinorText}">LB-X Autocannon</TextBlock>
                     <StackPanel Style="{StaticResource Lefted}">
+                        <ToggleSwitch x:Name="ammoSwitchLBX" Width="120"  OffContent="Single" OnContent="Cluster" Toggled="ammoSwitchLBX_Toggled" IsOn="True"/>
                         <RadioButton x:Name="lb2Button" GroupName="Class" Checked="lb2Button_Checked" Content="LB 2-X AC"/>
                         <RadioButton x:Name="lb5Button" GroupName="Class" Checked="lb5Button_Checked" Content="LB 5-X AC"/>
                         <RadioButton x:Name="lb10Button" GroupName="Class" Checked="lb10Button_Checked" Content="LB 10-X AC"/>
@@ -54,7 +55,6 @@
                         <RadioButton x:Name="lgun" GroupName="Class" Checked="lgun_Checked" Content="LMG"/>
                         <RadioButton x:Name="gun" GroupName="Class" Checked="gun_Checked" Content="MG"/>
                         <RadioButton x:Name="hgun" GroupName="Class" Checked="hgun_Checked" Content="HMG"/>
-                        <RadioButton x:Name="ngun" GroupName="Class" Checked="ngun_Checked" Content="Nailgun*"/>
                     </StackPanel>
                     <NavigationViewItemSeparator/>
                     <TextBlock Style="{StaticResource MinorText}">Number of Shots</TextBlock>
@@ -72,7 +72,7 @@
                         <TextBlock x:Name="BallisticDamage" Text="--" Style="{StaticResource StatText}"></TextBlock>
                         <Image Source="/Assets/heat.png" Style="{StaticResource NumberIcons}"/>
                         <TextBlock x:Name="BallisticHeat" Text="--" Style="{StaticResource StatText}"></TextBlock>
-                        <Image Source="/Assets/shots.png" Style="{StaticResource NumberIcons}"/>
+                        <Image x:Name="ShotIcon" Source="/Assets/shots.png" Style="{StaticResource NumberIcons}"/>
                         <TextBlock x:Name="BallisticShots" Text="--" Style="{StaticResource StatText}"></TextBlock>
                         <TextBlock x:Name="multiX" Style="{StaticResource MultiX}"></TextBlock>
                     </StackPanel>
@@ -87,19 +87,17 @@
                     <NavigationViewItemSeparator/>
                     <TextBlock Style="{StaticResource MinorText}" FontFamily="Steiner" FontSize="20" TextDecorations="None" HorizontalAlignment="Center" Text="Roll Hit Locations"/>
                     <StackPanel Style="{StaticResource Centered}" Spacing="40">
-                        <TextBlock x:Name="ballisticDice1block" Text="--" Height="32" FontSize="20" FontFamily="Steiner"/>
-                        <Button x:Name="BallisticRoll" Content="Roll" Click="BallisticRoll_Click" Width="100" Height="50" Margin="0,20,0,20" FontFamily="Steiner" FontSize="20"/>
-                        <TextBlock x:Name="ballisticDice2block" Text="--" Height="32" FontSize="20" FontFamily="Steiner"/>
+                        <Button x:Name="BallisticRoll" Content="Roll" Click="BallisticRoll_Click"  Style="{StaticResource RollButton}"/>
                     </StackPanel>
                     <NavigationViewItemSeparator/>
                 </StackPanel>
+                <TextBlock x:Name="SpecialNotes" Style="{StaticResource SpecialNotes}"/>
             
             </StackPanel>
             <StackPanel HorizontalAlignment="Left">
                 <StackPanel Style="{StaticResource Lefted}">
                     <TextBox x:Name="BallisticTextBox" Style="{StaticResource RollerTextBox}"/>
                 </StackPanel>
-                <TextBlock x:Name="SpecialNotes" Style="{StaticResource SpecialNotes}"/>
             </StackPanel>
         </StackPanel>
     </Grid>

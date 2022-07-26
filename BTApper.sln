@@ -20,6 +20,10 @@ Global
 		Release|ARM64 = Release|ARM64
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
+		Remote Machine|ARM = Remote Machine|ARM
+		Remote Machine|ARM64 = Remote Machine|ARM64
+		Remote Machine|x64 = Remote Machine|x64
+		Remote Machine|x86 = Remote Machine|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{D22BBBD3-1BD4-493F-BAE4-1D5903440286}.Debug|ARM.ActiveCfg = Debug|ARM
@@ -46,6 +50,10 @@ Global
 		{D22BBBD3-1BD4-493F-BAE4-1D5903440286}.Release|x86.ActiveCfg = Release|x86
 		{D22BBBD3-1BD4-493F-BAE4-1D5903440286}.Release|x86.Build.0 = Release|x86
 		{D22BBBD3-1BD4-493F-BAE4-1D5903440286}.Release|x86.Deploy.0 = Release|x86
+		{D22BBBD3-1BD4-493F-BAE4-1D5903440286}.Remote Machine|ARM.ActiveCfg = Release|ARM
+		{D22BBBD3-1BD4-493F-BAE4-1D5903440286}.Remote Machine|ARM64.ActiveCfg = Release|ARM64
+		{D22BBBD3-1BD4-493F-BAE4-1D5903440286}.Remote Machine|x64.ActiveCfg = Release|x64
+		{D22BBBD3-1BD4-493F-BAE4-1D5903440286}.Remote Machine|x86.ActiveCfg = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

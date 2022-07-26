@@ -1,0 +1,57 @@
+﻿<Page
+    x:Class="BTApper.Views.PhysicalView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:BTApper.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <StackPanel  Style="{StaticResource WholeStacker}">
+            <StackPanel Style="{StaticResource LeftPanel}">
+                <StackPanel x:Name="LaserControlPanel" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock HorizontalAlignment="Center" Style="{StaticResource Title}">Physical Attacks</TextBlock>
+                    <NavigationViewItemSeparator/>
+                    <TextBlock Style="{StaticResource MinorText}">Basic</TextBlock>
+                    <StackPanel Style="{StaticResource Lefted}">
+                        <RadioButton x:Name="PlaceholderButton" GroupName="Class" Checked="PlaceholderButton_Checked" >Placeholder</RadioButton>
+                    </StackPanel>
+                    <NavigationViewItemSeparator/>
+                    <StackPanel Style="{StaticResource Centered}">
+                        <Image Source="/Assets/explosion.png" Style="{StaticResource NumberIcons}"/>
+                        <TextBlock x:Name="PhysicalDamage" Text="--" Style="{StaticResource StatText}"></TextBlock>
+                        <Image Source="/Assets/heat.png" Style="{StaticResource NumberIcons}"/>
+                        <TextBlock x:Name="PhysicalHeat" Text="--" Style="{StaticResource StatText}"></TextBlock>
+                        <Image Source="/Assets/lasershot.png" Style="{StaticResource NumberIcons}"/>
+                        <TextBlock x:Name="PhysicalShots" Text="--" Style="{StaticResource StatText}"></TextBlock>
+                        <TextBlock x:Name="multiX" Style="{StaticResource MultiX}"></TextBlock>
+                    </StackPanel>
+                    <NavigationViewItemSeparator/>
+                    <TextBlock Style="{StaticResource MinorText}">Facing</TextBlock>
+                    <StackPanel Style="{StaticResource Lefted}">
+                        <RadioButton x:Name="frontFaceButton" GroupName="Face" Checked="frontFaceButton_Checked">Front</RadioButton>
+                        <RadioButton x:Name="rightFaceButton" GroupName="Face" Checked="rightFaceButton_Checked">Right</RadioButton>
+                        <RadioButton x:Name="leftFaceButton" GroupName="Face" Checked="leftFaceButton_Checked">Left</RadioButton>
+                        <RadioButton x:Name="rearFaceButton" GroupName="Face" Checked="rearFaceButton_Checked">Rear</RadioButton>
+                    </StackPanel>
+                    <NavigationViewItemSeparator/>
+                    <TextBlock Style="{StaticResource MinorText}" FontFamily="Steiner" FontSize="20" TextDecorations="None" HorizontalAlignment="Center" Text="Roll Hit Location"/>
+                    <StackPanel Style="{StaticResource Centered}" Spacing="40">
+                        <Image x:Name="PhysicalDice1" Source="/Assets/6die.png" Style="{StaticResource DiceImage}"/>
+                        <Button x:Name="PhysicalRoll" Content="Roll" Click="PhysicalRoll_Click" Style="{StaticResource RollButton}"/>
+                        <Image x:Name="PhysicalDice2" Source="/Assets/6die.png" Style="{StaticResource DiceImage}"/>
+                    </StackPanel>
+                    <NavigationViewItemSeparator/>
+                    <TextBlock x:Name="SpecialNotes" Style="{StaticResource SpecialNotes}"/>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Left">
+                <StackPanel Style="{StaticResource Lefted}">
+                    <TextBox x:Name="PhysicalTextBox" Style="{StaticResource RollerTextBox}"/>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>

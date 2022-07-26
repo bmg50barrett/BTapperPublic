@@ -22,6 +22,10 @@ namespace BTApper
         private int mmlSRMdmg = 0;
         private int mmlLRMdmg = 0;
 
+        private bool isLBX = false;
+        private int lbxShotPerGroup = 1;
+        private int lbxShotDamage = 1;
+
         public Weapon() { }
 
         public Weapon(int maxShots, int shotGroupSize, int heat, int damage)
@@ -52,6 +56,17 @@ namespace BTApper
             this.heat = heat;
             this.mmlSRMdmg = srmdmg;
             this.mmlLRMdmg = lrmdmg;
+
+        }
+
+        //Used my LBX
+
+        public Weapon(bool isLBX, int maxShots, int heat, int dmg)
+        {
+            this.isLBX = isLBX;
+            this.maxShots = maxShots;
+            this.heat = heat;
+            this.damage = dmg;
 
         }
 
@@ -141,6 +156,21 @@ namespace BTApper
         public int GetMMLLRMdmg()
         {
             return this.mmlLRMdmg;
+        }
+
+        public bool GetLBX()
+        {
+            return this.isLBX;
+        }
+
+        public int GetLBXShotsPerGroup()
+        {
+            return this.lbxShotPerGroup;
+        }
+
+        public int GetLBXShotDamage()
+        {
+            return this.lbxShotDamage;
         }
     }
 }

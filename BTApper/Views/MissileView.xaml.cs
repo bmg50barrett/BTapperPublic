@@ -38,7 +38,6 @@ namespace BTApper.Views
         static Weapon activeWeapon = new Weapon();
 
         //Create Weapon objects
-        //Weapon object (Name, shots, heat, damage, cluster?, multishot?, notes)
         //Create filler weapon for large array
         static Weapon extra = new Weapon( 0, 0, 0);
 
@@ -112,7 +111,6 @@ namespace BTApper.Views
 
         private void UpdateMissileScreen(String stringInput)
         {
-            //Single Element implemenation of text box.
             MissileTextBox.Text = Prepender(MissileTextBox.Text, stringInput);
         }
 
@@ -124,17 +122,6 @@ namespace BTApper.Views
         }
 
         private void MissileRoll2d6(Dice dice1, Dice dice2)
-        {
-            String filename;
-            dice1.RollDice();
-            dice2.RollDice();
-            filename = "/Assets/" + dice1.GetValue().ToString() + "die.png";
-            Dice1.Source = new BitmapImage(new Uri(base.BaseUri, @filename));
-            filename = "/Assets/" + dice2.GetValue().ToString() + "die.png";
-            Dice2.Source = new BitmapImage(new Uri(base.BaseUri, @filename));
-        }
-
-        private void MissileRollCluster2d6(Dice dice1, Dice dice2)
         {
             dice1.RollDice();
             dice2.RollDice();

@@ -11,7 +11,7 @@
 
     <Grid>
         <StackPanel Style="{StaticResource WholeStacker}">
-            <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center" Orientation="Horizontal">
+            <StackPanel Style="{StaticResource LeftPanel}">
                 <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
                     <TextBlock HorizontalAlignment="Center" Style="{StaticResource Title}">I.S. Missile</TextBlock>
                     <NavigationViewItemSeparator/>
@@ -57,7 +57,7 @@
                     </StackPanel>
                     <NavigationViewItemSeparator/>
                     <StackPanel Style="{StaticResource Centered}">
-                        
+
                         <Image Source="/Assets/explosion.png" Style="{StaticResource NumberIcons}"/>
                         <TextBlock x:Name="MissileDamage" Text="--" Style="{StaticResource StatText}"></TextBlock>
                         <Image Source="/Assets/heat.png" Style="{StaticResource NumberIcons}"/>
@@ -67,7 +67,7 @@
                         <TextBlock x:Name="multiX" Style="{StaticResource MultiX}"></TextBlock>
                     </StackPanel>
                     <NavigationViewItemSeparator/>
-
+                    <TextBlock Style="{StaticResource MinorText}" Text="Facing"/>
                     <StackPanel Style="{StaticResource Lefted}">
                         <RadioButton x:Name="frontFaceButton" GroupName="Face" Checked="frontFaceButton_Checked">Front</RadioButton>
                         <RadioButton x:Name="rightFaceButton" GroupName="Face" Checked="rightFaceButton_Checked">Right Side</RadioButton>
@@ -77,19 +77,17 @@
                     <NavigationViewItemSeparator/>
                     <TextBlock Style="{StaticResource MinorText}" FontFamily="Steiner" FontSize="20" TextDecorations="None" HorizontalAlignment="Center" Text="Roll Hit Locations"/>
                     <StackPanel Style="{StaticResource Centered}" Spacing="40">
-                        <Image x:Name="Dice1" Source="/Assets/1die.png" Width="50" Height="50"/>
-                        <Button x:Name="MissileRoll" Content="Roll" Click="MissileRoll_Click" Width="100" Height="50" Margin="0,20,0,20" FontFamily="Steiner" FontSize="20"/>
-                        <Image x:Name="Dice2" Source="/Assets/1die.png" Width="50" Height="50"/>
+                        <Button x:Name="MissileRoll" Content="Roll" Click="MissileRoll_Click"  Style="{StaticResource RollButton}"/>
                     </StackPanel>
                     <NavigationViewItemSeparator/>
+                    <TextBlock x:Name="SpecialNotes" Style="{StaticResource SpecialNotes}"/>
                 </StackPanel>
-
             </StackPanel>
             <StackPanel HorizontalAlignment="Left">
                 <StackPanel Style="{StaticResource Lefted}">
                     <TextBox x:Name="MissileTextBox" Style="{StaticResource RollerTextBox}"/>
                 </StackPanel>
-                <TextBlock x:Name="SpecialNotes" Style="{StaticResource SpecialNotes}"/>
+                
             </StackPanel>
         </StackPanel>
     </Grid>

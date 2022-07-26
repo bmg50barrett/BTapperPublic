@@ -10,7 +10,7 @@
         
         <!--===========  B U T T O N   S T Y L I N G  ===========-->
         <Style x:Key="RollButton" TargetType="Button">
-            <Setter Property="Width" Value="100"/>
+            <Setter Property="Width" Value="200"/>
             <Setter Property="Height" Value="50"/>
             <Setter Property="Margin" Value="0,10,0,10"/>
             <Setter Property="FontFamily" Value="Steiner"/>
@@ -81,6 +81,9 @@
             <Setter Property="Orientation" Value="Horizontal"/>
             <Setter Property="Margin" Value="40"/>
         </Style>
+        <Style x:Key="LeftPanel" TargetType="StackPanel">
+            <Setter Property="Width" Value="600"/>
+        </Style>
         <Style x:Key="Centered" TargetType="StackPanel">
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -121,6 +124,10 @@
             <Setter Property="Height" Value="40"/>
             <Setter Property="Width" Value="40"/>
             <Setter Property="Margin" Value="20,0,0,0"/>
+        </Style>
+        <Style x:Key="DiceImage" TargetType="Image">
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="Width" Value="50"/>
         </Style>
     </Application.Resources>
 </Application>

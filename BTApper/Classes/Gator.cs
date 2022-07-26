@@ -34,5 +34,10 @@ namespace BTApper
         {
             this.SetValue(g.GetValue() + a.GetValue() + t.GetValue() + o.GetValue() + r.GetValue() + misc.GetValue() + heat.GetValue());
         }
+
+        public void computeGator(Modifier g, Modifier a, Modifier t, Modifier o, Modifier r, Modifier misc, Modifier heat, Modifier minRange)
+        {
+            this.SetValue(g.GetValue() + a.GetValue() + t.GetValue() + o.GetValue() + r.GetValue() + misc.GetValue() + heat.GetValue() + minRange.GetValue());
+        }
     }
 }

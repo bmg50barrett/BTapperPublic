@@ -140,6 +140,9 @@
       <DependentUpon>MissileView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Classes\Weapon.cs" />
+    <Compile Include="Views\PhysicalView.xaml.cs">
+      <DependentUpon>PhysicalView.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -160,6 +163,7 @@
     <Content Include="Assets\BadgeLogo.scale-400.png" />
     <Content Include="Assets\cluster.png" />
     <Content Include="Assets\explosion.png" />
+    <Content Include="Assets\lasershot.png" />
     <Content Include="Assets\missile.png" />
     <Content Include="Assets\shots.png" />
     <Content Include="Assets\heat.png" />
@@ -242,6 +246,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MissileView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PhysicalView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

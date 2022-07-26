@@ -11,6 +11,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
 namespace BTApper.Views
@@ -99,10 +100,15 @@ namespace BTApper.Views
 
         private void EnergyRoll2d6(Dice de1, Dice de2)
         {
+            String filename;
+
             de1.RollDice();
+            filename = "/Assets/" + de1.GetValue().ToString() + "die.png";
+            EnergyDice1.Source = new BitmapImage(new Uri(base.BaseUri, @filename));
+
             de2.RollDice();
-            energyDice1block.Text = de1.GetValue().ToString();
-            energyDice2block.Text = de2.GetValue().ToString();
+            filename = "/Assets/" + de2.GetValue().ToString() + "die.png";            
+            EnergyDice2.Source = new BitmapImage(new Uri(base.BaseUri, @filename));
         }
 
         private void EnergyRoll_Click(object sender, RoutedEventArgs e)
@@ -112,10 +118,12 @@ namespace BTApper.Views
             if (plasmaRifleButton.IsChecked == true)
             {
                 heatDice.RollDice();
+                UpdateEnergyScreen("==========");
                 UpdateEnergyScreen("You hit " + facingArray[sum - 1, facingID] + " for " + EnergyDamage.Text + " damage and " + heatDice.GetValue() + " heat!");
                 
             } else
             {
+                UpdateEnergyScreen("==========");
                 UpdateEnergyScreen("You hit " + facingArray[sum - 1, facingID] + " for " + EnergyDamage.Text + " damage !");
                 
             }

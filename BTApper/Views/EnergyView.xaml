@@ -11,8 +11,8 @@
 
     <Grid>
         <StackPanel  Style="{StaticResource WholeStacker}">
-            <StackPanel x:Name="LaserShapingPanel" VerticalAlignment="Top" HorizontalAlignment="Center">
-            <StackPanel x:Name="LaserControlPanel" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <StackPanel Style="{StaticResource LeftPanel}">
+                <StackPanel x:Name="LaserControlPanel" VerticalAlignment="Center" HorizontalAlignment="Center">
                     <TextBlock HorizontalAlignment="Center" Style="{StaticResource Title}">I.S. Energy</TextBlock>
                 <NavigationViewItemSeparator/>
                 <TextBlock Style="{StaticResource MinorText}">Basic</TextBlock>
@@ -52,7 +52,7 @@
                     <TextBlock x:Name="EnergyDamage" Text="--" Style="{StaticResource StatText}"></TextBlock>
                     <Image Source="/Assets/heat.png" Style="{StaticResource NumberIcons}"/>
                     <TextBlock x:Name="EnergyHeat" Text="--" Style="{StaticResource StatText}"></TextBlock>
-                    <Image Source="/Assets/shots.png" Style="{StaticResource NumberIcons}"/>
+                    <Image Source="/Assets/lasershot.png" Style="{StaticResource NumberIcons}"/>
                     <TextBlock x:Name="EnergyShots" Text="--" Style="{StaticResource StatText}"></TextBlock>
                     <TextBlock x:Name="multiX" Style="{StaticResource MultiX}"></TextBlock>
                 </StackPanel>
@@ -65,20 +65,20 @@
                     <RadioButton x:Name="rearFaceButton" GroupName="Face" Checked="rearFaceButton_Checked">Rear</RadioButton>
                 </StackPanel>
                 <NavigationViewItemSeparator/>
-                    <TextBlock Style="{StaticResource MinorText}" FontFamily="Steiner" FontSize="20" TextDecorations="None" HorizontalAlignment="Center" Text="Roll Hit Locations"/>
+                    <TextBlock Style="{StaticResource MinorText}" FontFamily="Steiner" FontSize="20" TextDecorations="None" HorizontalAlignment="Center" Text="Roll Hit Location"/>
                     <StackPanel Style="{StaticResource Centered}" Spacing="40">
-                    <TextBlock x:Name="energyDice1block" Text="--"  Style="{StaticResource RollResultText}"/>
-                    <Button x:Name="EnergyRoll" Content="Roll" Click="EnergyRoll_Click"  Style="{StaticResource RollButton}"/>
-                    <TextBlock x:Name="energyDice2block" Text="--"  Style="{StaticResource RollResultText}"/>
-                </StackPanel>
+                        <Image x:Name="EnergyDice1" Source="/Assets/6die.png" Style="{StaticResource DiceImage}"/>
+                        <Button x:Name="EnergyRoll" Content="Roll" Click="EnergyRoll_Click" Style="{StaticResource RollButton}"/>
+                        <Image x:Name="EnergyDice2" Source="/Assets/6die.png" Style="{StaticResource DiceImage}"/>
+                    </StackPanel>
                 <NavigationViewItemSeparator/>
+                <TextBlock x:Name="SpecialNotes" Style="{StaticResource SpecialNotes}"/>
             </StackPanel>
         </StackPanel>
             <StackPanel HorizontalAlignment="Left">
                 <StackPanel Style="{StaticResource Lefted}">
                     <TextBox x:Name="EnergyTextBox" Style="{StaticResource RollerTextBox}"/>
                 </StackPanel>
-                <TextBlock x:Name="SpecialNotes" Style="{StaticResource SpecialNotes}"/>
             </StackPanel>
         </StackPanel>
     </Grid>
