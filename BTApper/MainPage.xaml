@@ -15,8 +15,6 @@
             <NavigationView.MenuItems>
                 <NavigationViewItem Content="To-Hit Calculator (G.A.T.O.R.)" Tag="GatorView" Icon="Calculator"/>
                 <NavigationViewItemSeparator/>
-                <NavigationViewItem Content="Physical" Tag="PhysicalView" Icon="Switch"/>
-                <NavigationViewItemSeparator/>
                 <NavigationViewItem Content="Energy" Tag="EnergyView" Icon="FullScreen"/>
                 <NavigationViewItem Content="Ballistic" Tag="BallisticView" Icon="Rotate"/>
                 <NavigationViewItem Content="Missile" Tag="MissileView" Icon="Placeholder"/>
