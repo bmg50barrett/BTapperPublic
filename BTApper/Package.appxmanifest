@@ -15,8 +15,8 @@
 
   <Properties>
     <DisplayName>BTApper</DisplayName>
-    <PublisherDisplayName>bmg50</PublisherDisplayName>
-    <Logo>Assets\StoreLogo.png</Logo>
+    <PublisherDisplayName>bmg50barrett</PublisherDisplayName>
+    <Logo>Assets\Logo\StoreLogo.png</Logo>
   </Properties>
 
   <Dependencies>
@@ -33,18 +33,14 @@
       EntryPoint="BTApper.App">
       <uap:VisualElements
         DisplayName="BTApper"
-        Square150x150Logo="Assets\Square150x150Logo.png"
-        Square44x44Logo="Assets\Square44x44Logo.png"
+        Square150x150Logo="Assets\Logo\Square150x150Logo.png"
+        Square44x44Logo="Assets\Logo\Square44x44Logo.png"
         Description="BTApper is a tool to streamline Classic BattleTech (Tabletop) to-hit and weapon damage rolls. It is provided completely free, and as-is. There is no special permissions required, no ads. This was built through a love of the game and for the community! Source code will be posted on GitHub."
         BackgroundColor="transparent">
-        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png" Square71x71Logo="Assets\SmallTile.png" Square310x310Logo="Assets\LargeTile.png"/>
-        <uap:SplashScreen Image="Assets\SplashScreen.png" />
-        <uap:LockScreen BadgeLogo="Assets\BadgeLogo.png" Notification="badge"/>
+        <uap:DefaultTile Wide310x150Logo="Assets\Logo\Wide310x150Logo.png" Square71x71Logo="Assets\Logo\SmallTile.png" Square310x310Logo="Assets\Logo\LargeTile.png"/>
+        <uap:SplashScreen Image="Assets\Logo\SplashScreen.png" />
+        <uap:LockScreen BadgeLogo="Assets\Logo\BadgeLogo.png" Notification="badge"/>
       </uap:VisualElements>
     </Application>
   </Applications>
-
-  <Capabilities>
-    <Capability Name="internetClient" />
-  </Capabilities>
 </Package>
