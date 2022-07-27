@@ -35,7 +35,10 @@ namespace BTApper.Views
         Modifier minRange;
 
         //Rapid Fire Jam Checker flag.
-        int rapidFireTargetRoll = 0;
+        private int rapidFireTargetRoll = 0;
+
+        //Roll ID
+        private int rollID = 0;
 
         public GatorView()
         {
@@ -69,7 +72,6 @@ namespace BTApper.Views
 
         private void UpdateScreen(String s)
         {
-            //Single Element implemenation of text box.
             TargetTextBox.Text = Prepender(TargetTextBox.Text, s);
         }
 
@@ -113,31 +115,45 @@ namespace BTApper.Views
         {
             Roll2d6(dice1, dice2);
             int sumdice = dice1.GetValue() + dice2.GetValue();
+            rollID++;
 
             
 
             if (sumdice < gator.GetValue())
             {
                 UpdateScreen("==========");
-                UpdateScreen("You missed! You rolled a " + sumdice + "!");
+                UpdateScreen("  You missed! You rolled a " + sumdice + "!");
+                if (rapidFireTargetRoll >= 2)
+                {
+                    if (sumdice <= rapidFireTargetRoll)
+                    {
+                        UpdateScreen("  Weapon Jammed! Apply damage to target!");
+                    }
+                    else
+                    {
+                        UpdateScreen("  Weapon clear! Apply damage to target!");
+                    }
+                }
+                UpdateScreen("Roll#: " + rollID);
             }
             else if (sumdice >= gator.GetValue())
             {
                 UpdateScreen("==========");
-                UpdateScreen("You HIT! You Rolled a " + sumdice + "!");
+                UpdateScreen("  You HIT! You Rolled a " + sumdice + "!");
+                if (rapidFireTargetRoll >= 2)
+                {
+                    if (sumdice <= rapidFireTargetRoll)
+                    {
+                        UpdateScreen("  Weapon Jammed! Apply damage to target!");
+                    }
+                    else
+                    {
+                        UpdateScreen("  Weapon clear! Apply damage to target!");
+                    }
+                }
+                UpdateScreen("Roll#: " + rollID);
             }
 
-            if (rapidFireTargetRoll >= 2)
-            {
-                if (sumdice <= rapidFireTargetRoll)
-                {
-                    UpdateScreen("WEAPON JAMMED! Still apply damage to target!");
-                }
-                else
-                {
-                    UpdateScreen("Weapon did not jam. Apply damage to target!");
-                }
-            }
         }
 
         private void UpdateValues()

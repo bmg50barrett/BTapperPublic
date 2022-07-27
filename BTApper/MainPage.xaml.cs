@@ -19,11 +19,17 @@ namespace BTApper
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
             this.InitializeComponent();
             this.NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Required;
+            ApplicationView.GetForCurrentView().SetPreferredMinSize(
+                new Size(
+                    500, // Width
+                    500 // Height
+                    )
+                );
         }
 
         private void ContentFrame_NavigationFailed(object sender, Windows.UI.Xaml.Navigation.NavigationFailedEventArgs e)
         {
-            
+
         }
 
         private void NavView_ItemInvoked(Windows.UI.Xaml.Controls.NavigationView sender, Windows.UI.Xaml.Controls.NavigationViewItemInvokedEventArgs args)

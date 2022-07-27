@@ -40,6 +40,9 @@ namespace BTApper.Views
         private bool multishotRoll = false;
         private bool isLBXWeapon = false;
 
+        //Create RollID
+        private int rollID = 0;
+
         //Create Weapon objects
         //Weapon object (Name, shots, heat, damage, cluster?, multishot?, notes)
         //Create filler weapon for large array
@@ -142,6 +145,7 @@ namespace BTApper.Views
         {
             BallisticRoll2d6(dice1, dice2);
             int sum = dice1.GetValue() + dice2.GetValue();
+            rollID++;
 
             //If Autocannon firing more than one shot.
             if (numShotID > 1)
@@ -150,47 +154,35 @@ namespace BTApper.Views
                 
                 
                 UpdateBallisticScreen("==========");
-                UpdateBallisticScreen("Rapid Fire Weapon! Hits: " + clusterHitResult + " out of " + numShotID + "!");
 
                 for (int i = 1; i <= clusterHitResult; i++)
                 {
                     BallisticRoll2d6(dice1, dice2);
                     sum = dice1.GetValue() + dice2.GetValue();
-                    UpdateBallisticScreen("Hit #" + i + "! You hit " + facingArray[sum - 1, facingID] + " for " + activeWeapon.GetDamage() + " damage!");
+                    UpdateBallisticScreen("  Hit #" + i + "! You hit " + facingArray[sum - 1, facingID] + " for " + activeWeapon.GetDamage() + " damage!");
                 }
-                if (numShotID == 6)
-                {
-                    //Check global to hit calculation! 6 shots means jam on a roll of 2, 3, or 4 to hit.
-                } else if (numShotID == 4 || numShotID== 5)
-                {
-                    //Check global to hit calculation! 4 or 5 shots means jam on a roll of 2 or 3 to hit.
-                }
-                else
-                {
-                    //Check global to hit calculation! 2 or 3 shots means jam on roll of 2 to hit.
-                }
-                UpdateBallisticScreen("*** CHECK FOR JAM! ***");
+                UpdateBallisticScreen("Roll# " + rollID + " - Rapid Fire Weapon! Hits: " + clusterHitResult + " out of " + numShotID + "!");
 
             } else if (activeWeapon.GetLBX() == true && ammoSwitchLBX.IsOn == true)
             {
                 int clusterHitResult = BallisticClusterHits.GetClusterHits(sum, activeWeapon.GetDamage());
                 UpdateBallisticScreen("==========");
-                UpdateBallisticScreen("LBX Weapon Cluster Shell! Hits: " + clusterHitResult + " out of possible " + activeWeapon.GetDamage() + "!");
+                UpdateBallisticScreen("  LBX Weapon Cluster Shell! Hits: " + clusterHitResult + " out of possible " + activeWeapon.GetDamage() + "!");
                 for (int i = 1; i <= clusterHitResult; i++)
                 {
                     BallisticRoll2d6(dice1, dice2);
                     sum = dice1.GetValue() + dice2.GetValue();
-                    UpdateBallisticScreen("Hit #" + i + "! You hit " + facingArray[sum - 1, facingID] + " for 1 damage!");
+                    UpdateBallisticScreen("  Hit #" + i + "! You hit " + facingArray[sum - 1, facingID] + " for 1 damage!");
                 }
+                UpdateBallisticScreen("Roll# " + rollID);
 
             } else
             {
                 UpdateBallisticScreen("==========");
-                UpdateBallisticScreen("Single Shell! You hit " + facingArray[sum - 1, facingID] + " for " + activeWeapon.GetDamage() + " damage!");
-                
-
+                UpdateBallisticScreen("  You hit " + facingArray[sum - 1, facingID] + " for " + activeWeapon.GetDamage() + " damage!");
+                UpdateBallisticScreen("Roll# " + rollID + " - Fired a single shell.");
             }
-            
+
         }
 
         //Reduces repeated code in button actions. Every button does the same four methods.

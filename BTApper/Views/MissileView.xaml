@@ -12,8 +12,7 @@
     <Grid>
         <StackPanel Style="{StaticResource WholeStacker}">
             <StackPanel Style="{StaticResource LeftPanel}">
-                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-                    <TextBlock HorizontalAlignment="Center" Style="{StaticResource Title}">I.S. Missile</TextBlock>
+                <TextBlock HorizontalAlignment="Center" Style="{StaticResource Title}">I.S. Missile</TextBlock>
                     <NavigationViewItemSeparator/>
                     <TextBlock Style="{StaticResource MinorText}" Text="SRM"/>
                     <StackPanel Style="{StaticResource Lefted}">
@@ -82,7 +81,6 @@
                     <NavigationViewItemSeparator/>
                     <TextBlock x:Name="SpecialNotes" Style="{StaticResource SpecialNotes}"/>
                 </StackPanel>
-            </StackPanel>
             <StackPanel HorizontalAlignment="Left">
                 <StackPanel Style="{StaticResource Lefted}">
                     <TextBox x:Name="MissileTextBox" Style="{StaticResource RollerTextBox}"/>

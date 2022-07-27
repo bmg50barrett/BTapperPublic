@@ -9,7 +9,7 @@
   <Identity
     Name="53807CaffeineRacingTeam.BTapper"
     Publisher="CN=91C75C39-7F1A-4F7F-9454-04524BA2BE3B"
-    Version="1.0.0.0" />
+    Version="1.0.1.0" />
 
   <mp:PhoneIdentity PhoneProductId="177f38cd-d9fd-45dc-85b3-887f595b4c44" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 

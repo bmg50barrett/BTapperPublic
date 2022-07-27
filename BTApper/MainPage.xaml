@@ -11,7 +11,8 @@
     <Grid x:Name="PageGrid">
         <NavigationView x:Name="NavView" ItemInvoked="NavView_ItemInvoked" Loaded="NavView_Loaded" 
                         SelectionChanged="NavView_SelectionChanged" BackRequested="NavView_BackRequested" 
-                        IsBackEnabled="{Binding ElementName=ContentFrame, Path=CanGoBack}" IsPaneOpen="False">
+                        IsBackEnabled="{Binding ElementName=ContentFrame, Path=CanGoBack}" IsPaneOpen="False" 
+                        IsSettingsVisible="False">
             <NavigationView.MenuItems>
                 <NavigationViewItem Content="To-Hit Calculator (G.A.T.O.R.)" Tag="GatorView" Icon="Calculator"/>
                 <NavigationViewItemSeparator/>

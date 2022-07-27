@@ -12,8 +12,7 @@
     <Grid>
         <StackPanel Style="{StaticResource WholeStacker}">
             <StackPanel Style="{StaticResource LeftPanel}">
-                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-                    <TextBlock HorizontalAlignment="Center" Style="{StaticResource Title}">I.S. Ballistic</TextBlock>
+                <TextBlock HorizontalAlignment="Center" Style="{StaticResource Title}">I.S. Ballistic</TextBlock>
                     <NavigationViewItemSeparator/>
                     <TextBlock Style="{StaticResource MinorText}">Autocannon</TextBlock>
                     <StackPanel Style="{StaticResource Lefted}">
@@ -90,8 +89,7 @@
                         <Button x:Name="BallisticRoll" Content="Roll" Click="BallisticRoll_Click"  Style="{StaticResource RollButton}"/>
                     </StackPanel>
                     <NavigationViewItemSeparator/>
-                </StackPanel>
-                <TextBlock x:Name="SpecialNotes" Style="{StaticResource SpecialNotes}"/>
+                    <TextBlock x:Name="SpecialNotes" Style="{StaticResource SpecialNotes}"/>
             
             </StackPanel>
             <StackPanel HorizontalAlignment="Left">

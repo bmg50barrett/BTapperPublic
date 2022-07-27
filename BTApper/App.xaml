@@ -25,7 +25,7 @@
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="FontSize" Value="36"/>
-            <Setter Property="Padding" Value="0,20,0,10"/>
+            <Setter Property="Padding" Value="0,0,0,10"/>
         </Style>
         <Style x:Key="LeaderText" TargetType="TextBlock">
             <Setter Property="VerticalAlignment" Value="Center"/>
@@ -67,9 +67,13 @@
             <Setter Property="FontSize" Value="18"/>
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
             <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="TextWrapping" Value="WrapWholeWords"/>
+            <Setter Property="MaxHeight" Value="750"/>
+            <Setter Property="MinWidth" Value="500"/>
+            <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
         </Style>
         <Style x:Key="SpecialNotes" TargetType="TextBlock">
-            <Setter Property="Margin" Value="10,10,0,0"/>
+            <Setter Property="Margin" Value="5,5,0,0"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="Foreground" Value="Gray"/>
         </Style>
@@ -79,7 +83,9 @@
             <Setter Property="HorizontalAlignment" Value="Left"/>
             <Setter Property="VerticalAlignment" Value="Top"/>
             <Setter Property="Orientation" Value="Horizontal"/>
-            <Setter Property="Margin" Value="40"/>
+            <Setter Property="Margin" Value="20"/>
+            <Setter Property="MaxHeight" Value="850"/>
+            <Setter Property="MaxWidth" Value="1200"/>
         </Style>
         <Style x:Key="LeftPanel" TargetType="StackPanel">
             <Setter Property="Width" Value="600"/>

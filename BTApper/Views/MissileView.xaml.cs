@@ -31,6 +31,9 @@ namespace BTApper.Views
         //Create facingID variable.
         private int facingID = 0;
 
+        //Create RollID
+        private int rollID = 0;
+
         //Create ClusterHitsTable object
         private ClusterHits MissileClusterHits = new ClusterHits();
 
@@ -129,6 +132,8 @@ namespace BTApper.Views
 
         private void MissileRoll_Click(object sender, RoutedEventArgs e)
         {
+            //Increment RollID to track number of clicks.
+            rollID++;
 
             //ROLL FOR CLUSTER HIT TABLE RESULT.
             MissileRoll2d6(dice1, dice2);
@@ -171,27 +176,42 @@ namespace BTApper.Views
 
 
             UpdateMissileScreen("==========");
-            UpdateMissileScreen("Hit " + amountRoll + " missiles out of a possible " + activeWeapon.GetMaxShots() + "!");
 
             int groupIndex;
-            for (groupIndex = 1; groupIndex <= (groupNumber); groupIndex++)
+            if (groupNumber == 1 && finalGroup == 0)
             {
                 locationDice1.RollDice();
                 locationDice2.RollDice();
                 locationResult = locationDice1.GetValue() + locationDice2.GetValue();
-                UpdateMissileScreen("Group #" + groupIndex + "  --  " + groupSize + " missiles hit " + facingArray[locationResult - 1, facingID] + " for " + (groupMissileDamage*groupSize) + " damage!");
+                UpdateMissileScreen("  " + groupSize + " missiles hit " + facingArray[locationResult - 1, facingID] + " for " + (groupMissileDamage * groupSize) + " damage!");
+            } else if (groupNumber == 0 && finalGroup != 0)
+            {
+                locationDice1.RollDice();
+                locationDice2.RollDice();
+                locationResult = locationDice1.GetValue() + locationDice2.GetValue();
+                UpdateMissileScreen("  " + finalGroup + " missiles hit " + facingArray[locationResult - 1, facingID] + " for " + (groupMissileDamage * finalGroup) + " damage!");
             }
-
-            //Print out final group damage result.
-            if (finalGroup != 0)
+            else
             {
-                locationDice1.RollDice();
-                locationDice2.RollDice();
-                locationResult = locationDice1.GetValue() + locationDice2.GetValue();
-                UpdateMissileScreen("Group #" + groupIndex + "  --  " + finalGroup + " missiles hit " + facingArray[locationResult - 1, facingID] + " for " + (groupMissileDamage * finalGroup) + " damage!");
+                for (groupIndex = 1; groupIndex <= (groupNumber); groupIndex++)
+                {
+                    locationDice1.RollDice();
+                    locationDice2.RollDice();
+                    locationResult = locationDice1.GetValue() + locationDice2.GetValue();
+                    UpdateMissileScreen("  " + "Group #" + groupIndex + "  -  " + groupSize + " missiles hit " + facingArray[locationResult - 1, facingID] + " for " + (groupMissileDamage * groupSize) + " damage!");
+                }
+
+                //Print out final group damage result.
+                if (finalGroup != 0)
+                {
+                    locationDice1.RollDice();
+                    locationDice2.RollDice();
+                    locationResult = locationDice1.GetValue() + locationDice2.GetValue();
+                    UpdateMissileScreen("  " + "Group #" + groupIndex + "  -  " + finalGroup + " missiles hit " + facingArray[locationResult - 1, facingID] + " for " + (groupMissileDamage * finalGroup) + " damage!");
+                }
             }
             
-
+            UpdateMissileScreen("Roll# " + rollID + " - " + "Hit " + amountRoll + " missiles out of a possible " + activeWeapon.GetMaxShots() + "!");
         }
 
         //Reduces repeated code in button actions. Every button does the same four methods.

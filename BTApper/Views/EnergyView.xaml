@@ -12,8 +12,7 @@
     <Grid>
         <StackPanel  Style="{StaticResource WholeStacker}">
             <StackPanel Style="{StaticResource LeftPanel}">
-                <StackPanel x:Name="LaserControlPanel" VerticalAlignment="Center" HorizontalAlignment="Center">
-                    <TextBlock HorizontalAlignment="Center" Style="{StaticResource Title}">I.S. Energy</TextBlock>
+                <TextBlock HorizontalAlignment="Center" Style="{StaticResource Title}">I.S. Energy</TextBlock>
                 <NavigationViewItemSeparator/>
                 <TextBlock Style="{StaticResource MinorText}">Basic</TextBlock>
                 <StackPanel Style="{StaticResource Lefted}">
@@ -72,9 +71,8 @@
                         <Image x:Name="EnergyDice2" Source="/Assets/6die.png" Style="{StaticResource DiceImage}"/>
                     </StackPanel>
                 <NavigationViewItemSeparator/>
-                <TextBlock x:Name="SpecialNotes" Style="{StaticResource SpecialNotes}"/>
-            </StackPanel>
-        </StackPanel>
+                    <TextBlock x:Name="SpecialNotes" Style="{StaticResource SpecialNotes}"/>
+                </StackPanel>
             <StackPanel HorizontalAlignment="Left">
                 <StackPanel Style="{StaticResource Lefted}">
                     <TextBox x:Name="EnergyTextBox" Style="{StaticResource RollerTextBox}"/>

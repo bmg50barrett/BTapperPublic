@@ -27,6 +27,9 @@ namespace BTApper.Views
         //Create facingID variable.
         private int facingID = 1;
 
+        //Create RollID
+        private int rollID = 0;
+
         //Create Weapon objects
         //Weapon object (Name, shots, heat, damage, cluster?, multishot?, notes)
         //Create filler weapon for large array
@@ -115,17 +118,20 @@ namespace BTApper.Views
         {
             EnergyRoll2d6(de1, de2);
             int sum = de1.GetValue() + de2.GetValue();
+            rollID++;
+
             if (plasmaRifleButton.IsChecked == true)
             {
                 heatDice.RollDice();
                 UpdateEnergyScreen("==========");
-                UpdateEnergyScreen("You hit " + facingArray[sum - 1, facingID] + " for " + EnergyDamage.Text + " damage and " + heatDice.GetValue() + " heat!");
-                
+                UpdateEnergyScreen("  You hit " + facingArray[sum - 1, facingID] + " for " + EnergyDamage.Text + " damage and " + heatDice.GetValue() + " heat!");
+                UpdateEnergyScreen("Roll#: " + rollID);
             } else
             {
                 UpdateEnergyScreen("==========");
-                UpdateEnergyScreen("You hit " + facingArray[sum - 1, facingID] + " for " + EnergyDamage.Text + " damage !");
-                
+                UpdateEnergyScreen("  You hit " + facingArray[sum - 1, facingID] + " for " + EnergyDamage.Text + " damage !");
+                UpdateEnergyScreen("Roll#: " + rollID);
+
             }
             
         }
